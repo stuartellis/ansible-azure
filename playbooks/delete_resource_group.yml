@@ -1,0 +1,18 @@
+---
+- name: Delete Azure Resource Group
+  hosts: localhost
+  vars_prompt:
+    - name: group_name
+      prompt: Specify the name for the resource group
+      private: no
+    - name: location
+      prompt: Specify the location for the resource group
+      private: no
+
+  tasks:
+    - name: Delete resource group {{ group_name }} from {{ location }}
+      azure.azcollection.azure_rm_resourcegroup:
+        name: "{{ group_name }}"
+        location: "{{ location }}"
+        state: absent
+        force_delete_nonempty: true

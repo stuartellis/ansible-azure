@@ -18,6 +18,16 @@ To add support for Azure:
     ansible-galaxy collection install azure.azcollection
     pipx runpip ansible-core install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
+## Usage
+
+To create an empty resource group:
+
+    ansible-playbook --connection=local ./playbooks/apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+
+To delete a resource group:
+
+    ansible-playbook --connection=local ./playbooks/delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+
 ## Resources
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)

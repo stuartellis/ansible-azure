@@ -1,0 +1,22 @@
+---
+- name: Azure Resource Group
+  hosts: localhost
+  vars_prompt:
+    - name: group_name
+      prompt: Specify the name for the resource group
+      private: no
+    - name: location
+      prompt: Specify the location for the resource group
+      private: no
+  vars:
+    group_tags:
+      - key: "source"
+        value: ansible
+
+  tasks:
+    - name: Ensure resource group {{ group_name }} in {{ location }}
+      azure.azcollection.azure_rm_resourcegroup:
+        name: "{{ group_name }}"
+        location: "{{ location }}"
+        state: present
+        tags: "{{ group_tags | items2dict }}"
