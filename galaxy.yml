@@ -1,12 +1,14 @@
 namespace: "stuartellis"
 name: "stuartellis-azure"
 description: "Custom Ansible for Azure"
-version: "0.0.1"
+version: "1.0.0"
 readme: "README.md"
 authors:
     - "Stuart Ellis <stuart@stuartellis.name>"
 dependencies:
+    "ansible.windows": ">=1.9.0"
     "azure.azcollection": ">=1.11.0"
+    "chocolatey.chocolatey": ">=1.2.0"
 license:
     - "MIT"
 tags:
