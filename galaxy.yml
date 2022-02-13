@@ -1,5 +1,6 @@
 namespace: "stuartellis"
-name: "azure"
+name: "stuartellis-azure"
+description: "Custom Ansible for Azure"
 version: "0.0.1"
 readme: "README.md"
 authors:
