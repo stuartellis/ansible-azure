@@ -1,0 +1,36 @@
+---
+- name: Deploy ARM Template
+  hosts: localhost
+  vars_prompt:
+    - name: template_file_path
+      prompt: The path to the template
+      private: no
+    - name: parameters_file_path
+      prompt: The path to the parameters file
+      private: no
+    - name: deployment_name
+      prompt: The name for the deployment
+      private: no
+    - name: resource_group_name
+      prompt: The resource group for the resources
+      private: no
+    - name: location
+      prompt: The location of the resource group itself
+      private: no
+
+  vars:
+    group_tags:
+      - key: "source"
+        value: ansible
+
+  tasks:
+    - name: Deploy "{{ deployment_name }}" to "{{ resource_group_name }}"
+      azure.azcollection.azure_rm_deployment:
+        state: present
+        deployment_mode: incremental # Set to 'complete' to delete other resources in the resource group
+        deployment_name: "{{ deployment_name }}"
+        resource_group_name: "{{ resource_group_name }}"
+        location: "{{ location }}"
+        parameters: "{{ lookup('file', parameters_file_path) }}"
+        template: "{{ lookup('file', template_file_path) }}"
+        tags: "{{ group_tags | items2dict }}"
