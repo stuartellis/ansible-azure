@@ -1,0 +1,11 @@
+---
+  - name: Ensure software packages
+    chocolatey.chocolatey.win_chocolatey:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - git
+      - googlechrome
+      - nodejs-lts
+      - powershell-core
+      - vscode

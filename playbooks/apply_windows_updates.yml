@@ -1,16 +1,6 @@
 ---
 - name: Apply Windows Updates
   hosts: windows
-  tasks:
-    - name: Install all critical and security updates
-      ansible.windows.win_updates:
-        category_names:
-          - CriticalUpdates
-          - SecurityUpdates
-          - UpdateRollups
-        state: installed
-      register: update_result
-
-    - name: Reboot host if required
-      ansible.windows.win_reboot:
-      when: update_result.reboot_required
+  become: yes
+  roles:
+    - role: windows_updates

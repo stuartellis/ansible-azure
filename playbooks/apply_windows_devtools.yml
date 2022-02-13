@@ -1,14 +1,6 @@
 ---
-- name: Developer Tools on Windows
-  hosts: windows
-  tasks:
-    - name: Ensure software packages
-      chocolatey.chocolatey.win_chocolatey:
-        name: "{{ item }}"
-        state: latest
-      loop:
-        - git
-        - googlechrome
-        - nodejs-lts
-        - powershell-core
-        - vscode
+- name: Set Up Developer Tools on Windows
+  hosts: windowsdev
+  become: yes
+  roles:
+    - role: windows_devtools
