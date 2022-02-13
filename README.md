@@ -11,5 +11,7 @@ To set up Ansible on a Linux system:
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
 
+To add support for Azure:
 
-
+    ansible-galaxy collection install azure.azcollection
+    pipx runpip ansible-core install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
