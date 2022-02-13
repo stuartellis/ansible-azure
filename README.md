@@ -18,6 +18,12 @@ To add support for Azure:
     ansible-galaxy collection install azure.azcollection
     pipx runpip ansible-core install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
+To add support for Microsoft Windows:
+
+    ansible-galaxy collection install ansible.windows
+    ansible-galaxy collection install chocolatey.chocolatey
+    pipx inject ansible-core pywinrm
+
 ## Usage
 
 To create an empty resource group:
