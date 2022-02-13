@@ -1,0 +1,13 @@
+namespace: "stuartellis"
+name: "azure"
+version: "0.0.1"
+readme: "README.md"
+authors:
+    - "Stuart Ellis <stuart@stuartellis.name>"
+dependencies:
+    "azure.azcollection": ">=1.11.0"
+license:
+    - "MIT"
+tags:
+    - azure
+repository: "https://www.github.com/stuartellis/ansible-azure"
