@@ -4,10 +4,10 @@
   vars_prompt:
     - name: group_name
       prompt: Specify the name for the resource group
-      private: no
+      private: false
     - name: location
       prompt: Specify the location for the resource group
-      private: no
+      private: false
   vars:
     group_tags:
       - key: "source"

@@ -30,9 +30,13 @@ To create an empty resource group:
 
     ansible-playbook --connection=local ./playbooks/apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
-To delete a resource group:
+To delete a resource group and all of the resources in it:
 
     ansible-playbook --connection=local ./playbooks/delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+
+To deploy a Windows VM:
+
+    ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/example_windows_vm.yml"
 
 ## Resources
 

@@ -1,0 +1,62 @@
+---
+- name: Deploy Example Windows VM
+  hosts: localhost
+  vars_prompt:
+    - name: admin_username
+      prompt: The admin username for the Virtual Machine
+      private: false
+    - name: admin_password
+      prompt: The admin password for the Virtual Machine
+      private: true      
+    - name: enable_acc_net
+      prompt: Enable accelerated networking?
+      private: false
+    - name: location
+      prompt: The location for the resources
+      private: false
+    - name: os_disk_type
+      prompt: OS Disk storage type
+      private: false
+    - name: os_version
+      prompt: The Windows version for the VM
+      private: false
+    - name: public_ip_address_type
+      prompt: Public IP address type
+      private: false
+    - name: public_ip_address_sku
+      prompt: Public IP address type SKU
+      private: false
+    - name: storage_account_name
+      prompt: Name of the storage account for diagnostics
+      private: false
+    - name: subnet_name
+      prompt: Name of the subnet
+      private: false
+    - name: vm_name
+      prompt: Name of the virtual machine
+      private: false
+    - name: vm_resource_group_name
+      prompt: The resource group for the VM resources
+      private: false
+    - name: vm_size
+      prompt: Size of the virtual machine
+      private: false
+    - name: vnet_id
+      prompt: ID of the virtual network
+      private: false
+
+  vars:
+    deployment_name: "{{ vm_name }}-{{ subnet_name }}-{{ location }}"
+    enable_hot_patching: false
+    os_disk_delete_option: Delete
+    network_interface_name: "{{ vm_name }}-nic0"
+    nic_delete_option: Delete
+    patch_mode: AutomaticByOS
+    pip_delete_option: Delete
+    public_ip_address_name: "{{ vm_name }}-pip0"
+    group_tags:
+      - key: "source"
+        value: ansible
+
+  roles:
+    - role: windows_single_public_vm

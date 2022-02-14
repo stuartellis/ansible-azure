@@ -1,6 +1,6 @@
 ---
 - name: Set Up Developer Tools on Windows
   hosts: windowsdev
-  become: yes
+  become: true
   roles:
     - role: windows_devtools

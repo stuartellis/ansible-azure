@@ -1,0 +1,53 @@
+---
+- name: Deploy {{ vm_name }} to {{ vm_resource_group_name }} in {{ location }}
+  azure.azcollection.azure_rm_deployment:
+    state: present
+    deployment_mode: incremental # Set to 'complete' to delete other resources in the resource group
+    deployment_name: "{{ deployment_name }}"
+    resource_group_name: "{{ vm_resource_group_name }}"
+    location: "{{ location }}"
+    template: "{{ lookup('file', 'deployment-template.json') }}"
+    tags: "{{ group_tags | items2dict }}"
+    parameters:
+      location:
+        value: "{{ location }}"
+      networkInterfaceName:
+        value: "{{ network_interface_name }}"
+      enableAcceleratedNetworking:
+        value: "{{ enable_acc_net }}"
+      subnetName:
+        value: "{{ subnet_name }}"
+      virtualNetworkId:
+        value: "{{ vnet_id }}"
+      publicIpAddressName:
+        value: "{{ public_ip_address_name }}"
+      publicIpAddressType:
+        value: "{{ public_ip_address_type }}"
+      publicIpAddressSku:
+        value: "{{ public_ip_address_sku }}"
+      pipDeleteOption:
+        value: "{{ pip_delete_option }}"
+      virtualMachineName:
+        value: "{{ vm_name }}"
+      virtualMachineComputerName:
+        value: "{{ vm_name }}"
+      osVersion:
+        value: "{{ os_version }}"
+      osDiskType:
+        value: "{{ os_disk_type }}"
+      osDiskDeleteOption:
+        value: "{{ os_disk_delete_option }}"
+      virtualMachineSize:
+        value: "{{ vm_size }}"
+      nicDeleteOption:
+        value: "{{ nic_delete_option }}"
+      adminUsername:
+        value: "{{ admin_username }}"
+      adminPassword:
+        value: "{{ admin_password }}"
+      patchMode:
+        value: "{{ patch_mode }}"
+      enableHotpatching:
+        value: "{{ enable_hot_patching }}"
+      diagnosticsStorageAccountName:
+        value: "{{ storage_account_name }}"

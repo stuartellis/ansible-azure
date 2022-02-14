@@ -4,19 +4,19 @@
   vars_prompt:
     - name: template_file_path
       prompt: The path to the template
-      private: no
+      private: false
     - name: parameters_file_path
       prompt: The path to the parameters file
-      private: no
+      private: false
     - name: deployment_name
       prompt: The name for the deployment
-      private: no
+      private: false
     - name: resource_group_name
       prompt: The resource group for the resources
-      private: no
+      private: false
     - name: location
       prompt: The location of the resource group itself
-      private: no
+      private: false
 
   vars:
     group_tags:

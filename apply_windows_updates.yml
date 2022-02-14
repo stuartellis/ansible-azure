@@ -1,6 +1,6 @@
 ---
 - name: Apply Windows Updates
   hosts: windows
-  become: yes
+  become: true
   roles:
     - role: windows_updates
