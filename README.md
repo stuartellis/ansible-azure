@@ -4,7 +4,7 @@ Ansible for Azure.
 
 ## Installation
 
-> Create a Service Principal in Azure to run Ansible operations.
+> To run Ansible operations, you need a Service Principal in Azure Active Directory. The Service Principal must be a member of the *Contributors* role on subscriptions in Azure.
 
 To set up Ansible on a Linux system:
 
