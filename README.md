@@ -46,3 +46,4 @@ To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
 - [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html)
+- [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
