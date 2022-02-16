@@ -12,17 +12,7 @@ To set up Ansible on a Linux system:
     pipx install ansible-core
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
-
-To add support for Azure:
-
-    ansible-galaxy collection install azure.azcollection
-    pipx runpip ansible-core install -r ~/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
-
-To add support for Microsoft Windows:
-
-    ansible-galaxy collection install ansible.windows
-    ansible-galaxy collection install chocolatey.chocolatey
-    pipx inject ansible-core pywinrm
+    ansible-galaxy install -r requirements.yml
 
 ## Usage
 
@@ -37,6 +27,20 @@ To delete a resource group and all of the resources in it:
 To deploy a Windows VM:
 
     ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/example_windows_vm.yml"
+
+## Testing
+
+Run *ansible-lint* to check the roles:
+
+    ansible-lint roles
+
+Always use *syntax-check* to validate a playbook before you run it:
+
+    ansible-playbook --syntax-check --connection=local apply_resource_group.yml
+
+To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
+
+    ansible-playbook --check --connection=local apply_resource_group.yml
 
 ## Resources
 
