@@ -27,7 +27,7 @@
     - name: Deploy "{{ deployment_name }}" to "{{ resource_group_name }}"
       azure.azcollection.azure_rm_deployment:
         state: present
-        deployment_mode: incremental # Set to 'complete' to delete other resources in the resource group
+        deployment_mode: incremental
         deployment_name: "{{ deployment_name }}"
         resource_group_name: "{{ resource_group_name }}"
         location: "{{ location }}"
