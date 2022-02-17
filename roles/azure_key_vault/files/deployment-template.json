@@ -50,28 +50,9 @@
             "metadata": {
                 "description": "Specifies the SKU for the key vault"
             }
-        },
-        "logsRetentionInDays": {
-            "type": "int",
-            "defaultValue": 0,
-            "maxValue": 365,
-            "minValue": 0,
-            "metadata": {
-                "description": "Specifies the number of days that logs will be kept. If you do not want to apply any retention policy and retain data forever, set value to 0."
-            }
-        },
-        "protectWithLocks": {
-            "type": "bool",
-            "defaultValue": true,
-            "metadata": {
-                "description": "Determines if the resources should be locked to prevent deletion."
-            }
         }
     },
     "functions": [],
-    "variables": {
-        "diagnosticStorageAccountName": "[format('diagst{0}', uniqueString(subscription().id, resourceGroup().id))]"
-    },
     "resources": [
         {
             "type": "Microsoft.KeyVault/vaults",
@@ -87,6 +68,11 @@
                     "family": "A"
                 },
                 "tenantId": "[subscription().tenantId]",
+                "enabledForDeployment": true,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": true,
+                "enableSoftDelete": true,
+                "publicNetworkAccess": "Enabled",
                 "accessPolicies": [
                     {
                         "objectId": "[parameters('objectId')]",
@@ -98,68 +84,6 @@
                     }
                 ]
             }
-        },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "apiVersion": "2021-06-01",
-            "name": "[variables('diagnosticStorageAccountName')]",
-            "location": "[parameters('location')]",
-            "sku": {
-                "name": "Standard_LRS"
-            },
-            "kind": "StorageV2",
-            "tags": {
-                "displayName": "[format('Key Vault {0} diagnostics storage account', parameters('keyVaultName'))]"
-            }
-        },
-        {
-            "type": "Microsoft.Insights/diagnosticSettings",
-            "apiVersion": "2021-05-01-preview",
-            "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
-            "name": "service",
-            "properties": {
-                "storageAccountId": "[resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName'))]",
-                "logs": [
-                    {
-                        "category": "AuditEvent",
-                        "enabled": true,
-                        "retentionPolicy": {
-                            "enabled": true,
-                            "days": "[parameters('logsRetentionInDays')]"
-                        }
-                    }
-                ]
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName'))]"
-            ]
-        },
-        {
-            "condition": "[parameters('protectWithLocks')]",
-            "type": "Microsoft.Authorization/locks",
-            "apiVersion": "2020-05-01",
-            "scope": "[format('Microsoft.KeyVault/vaults/{0}', parameters('keyVaultName'))]",
-            "name": "keyVaultDoNotDelete",
-            "properties": {
-                "level": "CanNotDelete"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
-            ]
-        },
-        {
-            "condition": "[parameters('protectWithLocks')]",
-            "type": "Microsoft.Authorization/locks",
-            "apiVersion": "2020-05-01",
-            "scope": "[format('Microsoft.Storage/storageAccounts/{0}', variables('diagnosticStorageAccountName'))]",
-            "name": "storageDoNotDelete",
-            "properties": {
-                "level": "CanNotDelete"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', variables('diagnosticStorageAccountName'))]"
-            ]
         }
     ]
 }

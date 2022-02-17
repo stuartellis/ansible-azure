@@ -21,7 +21,3 @@
         value: "{{ secrets_permissions }}"
       vaultSku:
         value: "{{ vault_sku }}"
-      logsRetentionInDays:
-        value: "{{ logs_retention_in_days }}"
-      protectWithLocks:
-        value: "{{ protect_with_locks }}"
