@@ -7,7 +7,7 @@
       private: false
     - name: admin_password
       prompt: The admin password for the Virtual Machine
-      private: true      
+      private: true
     - name: enable_acc_net
       prompt: Enable accelerated networking?
       private: false
@@ -44,6 +44,12 @@
     - name: vnet_id
       prompt: ID of the virtual network
       private: false
+    - name: winrm_cert_url
+      prompt: URL of the WinRM certificate
+      private: false
+    - name: winrm_vault_id
+      prompt: ID of the Key Vault for WinRM certificates
+      private: false
 
   vars:
     deployment_name: "{{ vm_name }}-{{ subnet_name }}-{{ location }}"
@@ -54,6 +60,7 @@
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
+    winrm_cert_store_name: "winrmcerts"
     group_tags:
       - key: "source"
         value: ansible

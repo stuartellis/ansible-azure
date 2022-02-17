@@ -64,6 +64,15 @@
         },
         "diagnosticsStorageAccountName": {
             "type": "String"
+        },
+        "winrmCertUrl": {
+            "type": "String"
+        },
+        "winrmVaultId": {
+            "type": "String"
+        },
+        "winrmCertStoreName": {
+            "type": "String"
         }
     },
     "variables": {
@@ -160,8 +169,32 @@
                         "patchSettings": {
                             "enableHotpatching": "[parameters('enableHotpatching')]",
                             "patchMode": "[parameters('patchMode')]"
+                        },
+                        "winRM": {
+                            "listeners": [
+                                {
+                                    "protocol": "http"
+                                },
+                                {
+                                    "protocol": "https",
+                                    "certificateUrl": "[parameters('winrmCertUrl')]"
+                                }
+                            ]
                         }
-                    }
+                    },
+                    "secrets": [
+                        {
+                            "sourceVault": {
+                                "id": "[parameters('winrmVaultId')]"
+                            },
+                            "vaultCertificates": [
+                                {
+                                    "certificateUrl": "[parameters('winrmCertUrl')]",
+                                    "certificateStore": "[parameters('winrmCertStoreName')]"
+                                }
+                            ]
+                        }
+                    ],
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
