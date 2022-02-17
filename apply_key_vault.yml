@@ -1,0 +1,40 @@
+---
+- name: Deploy Azure Key Vault
+  hosts: localhost
+  vars_prompt:
+    - name: key_vault_name
+      prompt: The name of the key vault
+      private: false
+    - name: kv_resource_group_name
+      prompt: The name of the key vault
+      private: false
+    - name: object_id
+      prompt: Identity in Azure Active Directory for the vault
+      private: false
+    - name: keys_permissions
+      prompt: The permissions to keys in the vault
+      private: true
+    - name: secrets_permissions
+      prompt: The permissions to secrets in the vault
+      private: false
+    - name: location
+      prompt: The location for the resources
+      private: false
+    - name: vault_sku
+      prompt: The SKU for the key vault
+      private: false
+    - name: logs_retention_in_days
+      prompt: The number of days that logs will be kept
+      private: false
+    - name: protect_with_locks
+      prompt: If the resources should be locked to prevent deletion
+      private: false
+
+  vars:
+    deployment_name: "{{ key_vault_name }}-{{ location }}"
+    group_tags:
+      - key: "source"
+        value: ansible
+
+  roles:
+    - role: azure_key_vault

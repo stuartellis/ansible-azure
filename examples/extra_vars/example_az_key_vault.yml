@@ -1,0 +1,9 @@
+location: uksouth
+key_vault_name: test-key-vault-0050
+kv_resource_group_name: sandbox-0010
+logs_retention_in_days: 1
+protect_with_locks: false
+object_id: eed52df9-8e49-43f9-89a8-7e5c0c64abf4
+vault_sku: standard
+keys_permissions: ["all"]
+secrets_permissions: ["all"]

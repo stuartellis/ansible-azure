@@ -24,9 +24,13 @@ To delete a resource group and all of the resources in it:
 
     ansible-playbook --connection=local ./playbooks/delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
+To deploy an Azure Key Vault:
+
+    ansible-playbook --connection=local ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
+
 To deploy a Windows VM:
 
-    ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/example_windows_vm.yml"
+    ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
 
 ## Testing
 

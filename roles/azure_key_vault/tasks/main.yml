@@ -1,0 +1,27 @@
+---
+- name: Deploy {{ key_vault_name }} to {{ kv_resource_group_name }} in {{ location }}
+  azure.azcollection.azure_rm_deployment:
+    state: present
+    deployment_mode: incremental
+    deployment_name: "{{ deployment_name }}"
+    resource_group_name: "{{ kv_resource_group_name }}"
+    location: "{{ location }}"
+    template: "{{ lookup('file', 'deployment-template.json') }}"
+    tags: "{{ group_tags | items2dict }}"
+    parameters:
+      location:
+        value: "{{ location }}"
+      objectId:
+        value: "{{ object_id }}"
+      keyVaultName:
+        value: "{{ key_vault_name }}"
+      keysPermissions:
+        value: "{{ keys_permissions }}"
+      secretsPermissions:
+        value: "{{ secrets_permissions }}"
+      vaultSku:
+        value: "{{ vault_sku }}"
+      logsRetentionInDays:
+        value: "{{ logs_retention_in_days }}"
+      protectWithLocks:
+        value: "{{ protect_with_locks }}"
