@@ -22,6 +22,15 @@
                 "description": "Specifies the object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. Get it by using Get-AzADUser or Get-AzADServicePrincipal cmdlets."
             }
         },
+        "certificatesPermissions": {
+            "type": "array",
+            "defaultValue": [
+                "all"
+            ],
+            "metadata": {
+                "description": "Specifies the permissions to certificates in the vault. Valid values are: all, encrypt, decrypt, wrapKey, unwrapKey, sign, verify, get, list, create, update, import, delete, backup, restore, recover, and purge."
+            }
+        },
         "keysPermissions": {
             "type": "array",
             "defaultValue": [
@@ -79,6 +88,7 @@
                         "tenantId": "[subscription().tenantId]",
                         "permissions": {
                             "keys": "[parameters('keysPermissions')]",
+                            "certificates": "[parameters('certificatesPermissions')]",
                             "secrets": "[parameters('secretsPermissions')]"
                         }
                     }
