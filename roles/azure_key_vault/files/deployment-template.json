@@ -78,7 +78,7 @@
                 },
                 "tenantId": "[subscription().tenantId]",
                 "enabledForDeployment": true,
-                "enabledForDiskEncryption": false,
+                "enabledForDiskEncryption": true,
                 "enabledForTemplateDeployment": true,
                 "enableSoftDelete": true,
                 "publicNetworkAccess": "Enabled",
