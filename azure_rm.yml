@@ -1,0 +1,8 @@
+plugin: azure_rm
+
+include_vm_resource_groups:
+  - sandbox-0010
+auth_source: auto
+plain_host_names: yes
+conditional_groups:
+  windows: "'WindowsServer' in image.offer"
