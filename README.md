@@ -16,6 +16,10 @@ To set up Ansible on a Linux system:
 
 ## Usage
 
+To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory:
+
+    ansible-inventory -i azure_rm.yml --graph
+
 To create an empty resource group:
 
     ansible-playbook --connection=local ./playbooks/apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
