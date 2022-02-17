@@ -11,7 +11,7 @@
     parameters:
       location:
         value: "{{ location }}"
-      objectId:
+      operatorsId:
         value: "{{ object_id }}"
       keyVaultName:
         value: "{{ key_vault_name }}"

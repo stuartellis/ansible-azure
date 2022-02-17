@@ -16,7 +16,7 @@
                 "description": "Specifies the location for all resources."
             }
         },
-        "objectId": {
+        "operatorsId": {
             "type": "string",
             "metadata": {
                 "description": "Specifies the object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. Get it by using Get-AzADUser or Get-AzADServicePrincipal cmdlets."
@@ -84,7 +84,7 @@
                 "publicNetworkAccess": "Enabled",
                 "accessPolicies": [
                     {
-                        "objectId": "[parameters('objectId')]",
+                        "operatorsId": "[parameters('operatorsId')]",
                         "tenantId": "[subscription().tenantId]",
                         "permissions": {
                             "keys": "[parameters('keysPermissions')]",
