@@ -1,0 +1,15 @@
+---
+- hosts: windows
+  vars_prompt:
+    - name: ansible_username
+      prompt: "Enter administrator username"
+      private: false
+  vars:
+    ansible_user: "{{ ansible_username }}"
+    ansible_connection: winrm
+    ansible_winrm_cert_pem: ./ansible-0050.pem
+    ansible_winrm_cert_key_pem: ./ansible-0050-key.pem
+    ansible_winrm_transport: certificate
+  tasks:
+    - name: Test connection
+      win_ping:

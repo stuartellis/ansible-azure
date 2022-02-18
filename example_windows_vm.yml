@@ -44,7 +44,7 @@
     - name: vnet_id
       prompt: ID of the virtual network
       private: false
-    - name: winrm_cert_url
+    - name: winrm_cert_secret_url
       prompt: URL of the WinRM certificate
       private: false
     - name: winrm_vault_id
@@ -60,10 +60,12 @@
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
-    winrm_cert_store_name: "winrmcerts"
+    winrm_cert_store_name: "Trusted People"
     group_tags:
       - key: "source"
         value: ansible
+      - key: "role"
+        value: example
 
   roles:
     - role: windows_single_public_vm

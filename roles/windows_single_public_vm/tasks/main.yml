@@ -51,8 +51,8 @@
         value: "{{ enable_hot_patching }}"
       diagnosticsStorageAccountName:
         value: "{{ storage_account_name }}"
-      winrmCertUrl:
-        value: "{{ winrm_cert_url }}"
+      winrmCertSecretUrl:
+        value: "{{ winrm_cert_secret_url }}"
       winrmVaultId:
         value: "{{ winrm_vault_id }}"
       winrmCertStoreName:

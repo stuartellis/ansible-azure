@@ -65,7 +65,7 @@
         "diagnosticsStorageAccountName": {
             "type": "String"
         },
-        "winrmCertUrl": {
+        "winrmCertSecretUrl": {
             "type": "String"
         },
         "winrmVaultId": {
@@ -177,7 +177,7 @@
                                 },
                                 {
                                     "protocol": "https",
-                                    "certificateUrl": "[parameters('winrmCertUrl')]"
+                                    "certificateUrl": "[parameters('winrmCertSecretUrl')]"
                                 }
                             ]
                         }
@@ -189,7 +189,7 @@
                             },
                             "vaultCertificates": [
                                 {
-                                    "certificateUrl": "[parameters('winrmCertUrl')]",
+                                    "certificateUrl": "[parameters('winrmCertSecretUrl')]",
                                     "certificateStore": "[parameters('winrmCertStoreName')]"
                                 }
                             ]

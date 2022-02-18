@@ -36,6 +36,11 @@ To deploy a Windows VM:
 
     ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
 
+To install developer tools on a Windows VM:
+
+    no_proxy=*
+    ansible-playbook -i azure_rm.yml ./apply_windows_devtools.yml
+
 ## Testing
 
 Run *ansible-lint* to check the roles:

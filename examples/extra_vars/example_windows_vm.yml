@@ -12,5 +12,5 @@ subnet_name: subnet-0010
 storage_account_name: sjestoresandbox0010
 vm_size: Standard_B2s
 vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-vnet-0010/providers/Microsoft.Network/virtualNetworks/sandbox-vnet-0010
-winrm_cert_url: https://test-key-vault-0050.vault.azure.net/certificates/ops/3af2a61d822444c9886f4ef47233c6b6
+winrm_cert_secret_url: https://test-key-vault-0050.vault.azure.net/secrets/ansible-0050/096a1f301f3042579f694f409aa5f92f
 winrm_vault_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-0010/providers/Microsoft.KeyVault/vaults/test-key-vault-0050
