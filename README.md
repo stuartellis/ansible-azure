@@ -2,9 +2,9 @@
 
 Ansible for Azure.
 
-## Installation
+## Setting Up
 
-> To run Ansible operations, you need a Service Principal in Azure Active Directory. The Service Principal must be a member of the *Contributors* role on subscriptions in Azure.
+### Ansible on Linux
 
 To set up Ansible on a Linux system:
 
@@ -13,6 +13,14 @@ To set up Ansible on a Linux system:
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
     ansible-galaxy install -r requirements.yml
+
+## Connecting to Azure
+
+To run Ansible operations, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
+
+You also need certificates to connect to Windows Virtual Machines with WinRM. The roles for deploying Windows Virtual Machines set up with WinRM with certificates from Key Vault.
+
+To install a certificate for WinRM on a Virtual Machine from Key Vault, it must be uploaded as [a JSON object](https://docs.microsoft.com/en-us/javascript/api/@azure/arm-compute/winrmlistener?view=azure-node-latest).
 
 ## Usage
 
@@ -58,5 +66,5 @@ To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 ## Resources
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
-- [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html)
 - [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
+- [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html)
