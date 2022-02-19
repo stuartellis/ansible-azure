@@ -1,12 +1,12 @@
-# ansible-azure
+# Ansible for Azure
 
-Ansible for Azure.
+[Ansible](https://www.ansible.com/) playbooks and roles for Azure.
+
+Use [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) to check the roles.
 
 ## Setting Up
 
-### Ansible on Linux
-
-To set up Ansible on a Linux system:
+To set up Ansible on a macOS or Linux system:
 
     pip3 install --user pipx
     pipx install ansible-core
@@ -18,21 +18,19 @@ To set up Ansible on a Linux system:
 
 ### Service Principal
 
-To run Ansible operations, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
+To run operations with Ansible, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
 
 Set the details in either the configuration file* $HOME/.azure/credentials*, or as environment variables.
 
 ### Certificates for WinRM
 
-You also need certificates to connect to Windows Virtual Machines with WinRM. The roles for deploying Windows Virtual Machines set up with WinRM with certificates from Key Vault.
+You also need certificates to connect to Windows Virtual Machines, using WinRM. The roles for deploying Windows Virtual Machines set up with WinRM with certificates from Key Vault.
 
 To install a certificate for WinRM on a Virtual Machine from Key Vault, it must be uploaded as [a JSON object](https://docs.microsoft.com/en-us/javascript/api/@azure/arm-compute/winrmlistener?view=azure-node-latest).
 
 ## Usage
 
-To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory:
-
-    ansible-inventory -i azure_rm.yml --graph
+> Use the *localhost* inventory to run commands on Azure APIs.
 
 To create an empty resource group:
 
@@ -49,6 +47,12 @@ To deploy an Azure Key Vault:
 To deploy a Windows VM:
 
     ansible-playbook -i inventories/localhost ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
+
+### Running Playbooks on Azure Virtual Machines
+
+To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory:
+
+    ansible-inventory -i inventories/azure_rm.yml --graph
 
 To install developer tools on a Windows VM:
 
@@ -72,5 +76,6 @@ To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 ## Resources
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
+- [Ansible Collection for Azure](https://docs.ansible.com/ansible/latest/collections/azure/azcollection/)
+- [Azure Resource Manager templates](https://docs.microsoft.com/en-gb/azure/azure-resource-manager/templates/)
 - [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
-- [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html)
