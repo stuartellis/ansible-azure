@@ -22,7 +22,7 @@ To set up Ansible, run these commands in a terminal window:
 
 To run operations with Ansible, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
 
-Set the details in either the configuration file* $HOME/.azure/credentials*, or as environment variables.
+Set the service principal details in either the configuration file *$HOME/.azure/credentials*, or as environment variables.
 
 ### Certificates for WinRM
 
