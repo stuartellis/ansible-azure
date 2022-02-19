@@ -16,7 +16,13 @@ To set up Ansible on a Linux system:
 
 ## Connecting to Azure
 
+### Service Principal
+
 To run Ansible operations, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
+
+Set the details in either the configuration file* $HOME/.azure/credentials*, or as environment variables.
+
+### Certificates for WinRM
 
 You also need certificates to connect to Windows Virtual Machines with WinRM. The roles for deploying Windows Virtual Machines set up with WinRM with certificates from Key Vault.
 
@@ -30,24 +36,24 @@ To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory
 
 To create an empty resource group:
 
-    ansible-playbook --connection=local ./playbooks/apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
 To delete a resource group and all of the resources in it:
 
-    ansible-playbook --connection=local ./playbooks/delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
 To deploy an Azure Key Vault:
 
-    ansible-playbook --connection=local ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
+    ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
 
 To deploy a Windows VM:
 
-    ansible-playbook --connection=local ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
 
 To install developer tools on a Windows VM:
 
-    no_proxy=*
-    ansible-playbook -i azure_rm.yml ./apply_windows_devtools.yml
+    export no_proxy=*
+    ansible-playbook -i inventories/azure_rm.yml ./apply_windows_devtools.yml
 
 ## Testing
 
@@ -57,11 +63,11 @@ Run *ansible-lint* to check the roles:
 
 Always use *syntax-check* to validate a playbook before you run it:
 
-    ansible-playbook --syntax-check --connection=local apply_resource_group.yml
+    ansible-playbook --syntax-check apply_resource_group.yml
 
 To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 
-    ansible-playbook --check --connection=local apply_resource_group.yml
+    ansible-playbook --check apply_resource_group.yml
 
 ## Resources
 
