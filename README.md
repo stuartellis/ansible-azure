@@ -6,7 +6,9 @@ Use [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) to 
 
 ## Setting Up
 
-To set up Ansible on a macOS or Linux system:
+Ansible requires Python 3. You may run Ansible on Linux, macOS or WSL.
+
+To set up Ansible, run these commands in a terminal window:
 
     pip3 install --user pipx
     pipx install ansible-core
