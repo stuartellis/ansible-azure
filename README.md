@@ -15,6 +15,7 @@ To set up Ansible, run these commands in a terminal window:
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
     ansible-galaxy install -r requirements.yml
+    pipx runpip ansible-core install -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
 ## Connecting to Azure
 
