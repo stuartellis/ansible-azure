@@ -26,9 +26,9 @@ Set the service principal details in either the configuration file *$HOME/.azure
 
 ### Certificates for WinRM
 
-You also need certificates to connect to Windows Virtual Machines, using WinRM. The roles for deploying Windows Virtual Machines set up with WinRM with certificates from Key Vault.
+You also need certificates to connect to Windows Virtual Machines with WinRM. The roles for deploying Windows Virtual Machines enable access for WinRM, with certificates from an Azure Key Vault.
 
-To install a certificate for WinRM on a Virtual Machine from Key Vault, it must be uploaded as [a JSON object](https://docs.microsoft.com/en-us/javascript/api/@azure/arm-compute/winrmlistener?view=azure-node-latest).
+> To install a certificate for WinRM on a Virtual Machine from a Key Vault, it must be uploaded as [a JSON object](https://docs.microsoft.com/en-us/javascript/api/@azure/arm-compute/winrmlistener?view=azure-node-latest).
 
 ## Usage
 
