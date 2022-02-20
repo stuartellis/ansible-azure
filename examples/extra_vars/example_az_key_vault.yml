@@ -1,6 +1,6 @@
 location: uksouth
 key_vault_name: test-key-vault-0050
-kv_resource_group_name: sandbox-0010
+key_vault_rg_name: sandbox-0010
 object_id: eed52df9-8e49-43f9-89a8-7e5c0c64abf4
 vault_sku: standard
 certificates_permissions: ["all"]

@@ -47,6 +47,10 @@ To deploy an Azure Key Vault:
 
     ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
 
+To create a WinRM certificate:
+
+    ansible-playbook -i inventories/localhost ./deploy_winrm_cert.yml --extra-vars "@examples/extra_vars/example_winrm_cert.yml"
+
 To deploy a Windows VM:
 
     ansible-playbook -i inventories/localhost ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"

@@ -1,10 +1,10 @@
 ---
-- name: Deploy {{ key_vault_name }} to {{ kv_resource_group_name }} in {{ location }}
+- name: Deploy {{ key_vault_name }} to {{ key_vault_rg_name }} in {{ location }}
   azure.azcollection.azure_rm_deployment:
     state: present
     deployment_mode: incremental
     deployment_name: "{{ deployment_name }}"
-    resource_group_name: "{{ kv_resource_group_name }}"
+    resource_group_name: "{{ key_vault_rg_name }}"
     location: "{{ location }}"
     template: "{{ lookup('file', 'deployment-template.json') }}"
     tags: "{{ group_tags | items2dict }}"

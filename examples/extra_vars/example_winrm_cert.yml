@@ -1,0 +1,6 @@
+cert_prefix: ansible-0060
+key_vault_name: test-key-vault-0050
+output_dir: tmp
+pfx_passwd: Qwerty098!
+secret_name: "{{ cert_prefix }}-winrm"
+username: testadmin@localhost

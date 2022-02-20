@@ -5,7 +5,7 @@
     - name: key_vault_name
       prompt: The name of the key vault
       private: false
-    - name: kv_resource_group_name
+    - name: key_vault_rg_name
       prompt: The name of the key vault
       private: false
     - name: object_id

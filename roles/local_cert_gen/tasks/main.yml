@@ -1,0 +1,33 @@
+---
+- name: Create tmp directory
+  ansible.builtin.file:
+    path: "tmp/{{ cert_prefix }}"
+    state: directory
+    mode: "0700"
+  register: working_dir
+
+- name: Provide OpenSSL config file
+  delegate_to: localhost
+  ansible.builtin.template:
+    src: openssl.cnf.j2
+    dest: "{{ working_dir.path }}/openssl.cnf"
+
+- name: Generate certificate files
+  delegate_to: localhost
+  ansible.builtin.command:
+    chdir: "{{ working_dir.path }}"
+    cmd: openssl req -config openssl.cnf -x509 -nodes -days 3650 -newkey rsa:2048 -out {{ cert_prefix }}-cert.pem -outform PEM -keyout {{ cert_prefix }}-key.pem -subj "/CN={{ username }}" -extensions v3_req_client
+
+- name: Generate PFX file
+  delegate_to: localhost
+  ansible.builtin.command:
+    chdir: "{{ working_dir.path }}"
+    cmd: openssl pkcs12 -export -out {{ cert_prefix }}-complete.pfx -inkey {{ cert_prefix }}-key.pem -in {{ cert_prefix }}-cert.pem -passout pass:{{ pfx_passwd }}
+
+- name: Generate JSON for PFX
+  delegate_to: localhost
+  vars:
+    pfx_content: "{{lookup('file', '{{ working_dir.path }}/{{ cert_prefix }}-complete.pfx') | b64encode }}"
+  ansible.builtin.template:
+    src: key-vault-secret.json.j2
+    dest: "{{ working_dir.path }}/{{ cert_prefix }}-key-vault.json"

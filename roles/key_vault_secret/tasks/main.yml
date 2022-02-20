@@ -1,0 +1,7 @@
+---
+- name: Set secret in Key Vault
+  delegate_to: localhost
+  ansible.builtin.command:
+    chdir: "{{ working_dir.path }}"
+    cmd: az keyvault secret set --name {{ secret_name }} --vault-name {{ key_vault_name }} --value "{{lookup('file', '{{ working_dir.path }}/{{ cert_prefix }}-complete.pfx') | b64encode }}"
+  register: vault_secret

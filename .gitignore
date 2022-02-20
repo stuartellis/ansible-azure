@@ -2,7 +2,7 @@
 .vscode
 
 # Generated files
-*.pem
+tmp
 
 # Logs
 logs
