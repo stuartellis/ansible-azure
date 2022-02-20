@@ -53,7 +53,7 @@ To create a WinRM certificate:
 
 To deploy a Windows VM:
 
-    ansible-playbook -i inventories/localhost ./example_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./deploy_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
 
 ### Running Playbooks on Azure Virtual Machines
 
