@@ -7,7 +7,6 @@
     resource_group_name: "{{ key_vault_rg_name }}"
     location: "{{ location }}"
     template: "{{ lookup('file', 'deployment-template.json') }}"
-    tags: "{{ group_tags | items2dict }}"
     parameters:
       location:
         value: "{{ location }}"

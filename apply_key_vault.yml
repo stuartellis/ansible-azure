@@ -29,9 +29,6 @@
 
   vars:
     deployment_name: "{{ key_vault_name }}-{{ location }}"
-    group_tags:
-      - key: "source"
-        value: ansible
 
   roles:
     - role: azure_key_vault

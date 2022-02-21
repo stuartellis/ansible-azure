@@ -1,0 +1,7 @@
+---
+- name: Ensure resource group {{ group_name }} in {{ location }}
+  azure.azcollection.azure_rm_resourcegroup:
+    name: "{{ group_name }}"
+    location: "{{ location }}"
+    state: present
+    tags: "{{ group_tags | items2dict }}"

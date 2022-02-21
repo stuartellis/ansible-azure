@@ -18,11 +18,6 @@
       prompt: The location of the resource group itself
       private: false
 
-  vars:
-    group_tags:
-      - key: "source"
-        value: ansible
-
   tasks:
     - name: Deploy "{{ deployment_name }}" to "{{ resource_group_name }}"
       azure.azcollection.azure_rm_deployment:
@@ -33,4 +28,3 @@
         location: "{{ location }}"
         parameters: "{{ lookup('file', parameters_file_path) }}"
         template: "{{ lookup('file', template_file_path) }}"
-        tags: "{{ group_tags | items2dict }}"
