@@ -12,10 +12,14 @@ To set up Ansible, run these commands in a terminal window:
 
     pip3 install --user pipx
     pipx install ansible --include-deps
-    pipx install ansible-lint
-    pipx inject ansible-lint ansible-core yamllint
+    pipx inject ansible pywinrm
     ansible-galaxy install -r requirements.yml
     pipx runpip ansible install -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+
+To install Ansible Lint, run these commands in a terminal window:
+
+    pipx install ansible-lint
+    pipx inject ansible-lint ansible-core yamllint
 
 ## Connecting to Azure
 
@@ -69,7 +73,7 @@ To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory
 To install developer tools on a Windows VM:
 
     export no_proxy=*
-    ansible-playbook -i inventories/azure_rm.yml ./apply_windows_devtools.yml
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_devtools.yml
 
 Enter this command for documentation on the dynamic inventory configuration file:
 

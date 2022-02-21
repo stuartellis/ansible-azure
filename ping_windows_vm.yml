@@ -1,13 +1,8 @@
 ---
 - hosts: windows
-  vars_prompt:
-    - name: ansible_password
-      prompt: The admin password for the Virtual Machines
-      private: true
   vars:
-    ansible_user: testadmin
-    ansible_winrm_server_cert_validation: ignore
     ansible_connection: winrm
+    ansible_winrm_server_cert_validation: ignore
     ansible_winrm_transport: ntlm
   tasks:
     - name: Test connection
