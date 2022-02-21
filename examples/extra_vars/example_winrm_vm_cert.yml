@@ -1,4 +1,4 @@
-cert_prefix: ansible-2071
+cert_prefix: ansible-2075
 key_vault_name: test-key-vault-0050
 key_vault_rg_name: sandbox-0010
 output_dir: tmp

@@ -41,6 +41,10 @@
         "osVersion": {
             "type": "String"
         },
+        "osDiskSize": {
+            "type": "Int",
+            "defaultValue": 127
+        },
         "osDiskType": {
             "type": "String"
         },
@@ -147,6 +151,7 @@
                     "osDisk": {
                         "createOption": "fromImage",
                         "name": "[format('{0}-OsDisk', parameters('virtualMachineComputerName'))]",
+                        "diskSizeGB": "[parameters('osDiskSize')]",
                         "managedDisk": {
                             "storageAccountType": "[parameters('osDiskType')]"
                         },

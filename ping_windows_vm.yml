@@ -1,13 +1,14 @@
 ---
 - hosts: windows
+  vars_prompt:
+    - name: ansible_password
+      prompt: The admin password for the Virtual Machines
+      private: true
   vars:
     ansible_user: testadmin
     ansible_winrm_server_cert_validation: ignore
     ansible_connection: winrm
-    # ansible_winrm_cert_pem: ./tmp/ansible-2060/ansible-2060-cert.pem
-    # ansible_winrm_cert_key_pem: ./tmp/ansible-2060/ansible-2060-key.pem
-    ansible_winrm_transport: basic
-    ansible_password: QazWsxEdc123!!
+    ansible_winrm_transport: ntlm
   tasks:
     - name: Test connection
       ansible.windows.win_ping:

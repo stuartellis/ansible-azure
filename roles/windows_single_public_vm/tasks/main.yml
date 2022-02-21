@@ -33,6 +33,8 @@
         value: "{{ vm_name }}"
       osVersion:
         value: "{{ os_version }}"
+      osDiskSize:
+        value: "{{ os_disk_size }}"
       osDiskType:
         value: "{{ os_disk_type }}"
       osDiskDeleteOption:

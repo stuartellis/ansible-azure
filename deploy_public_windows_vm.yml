@@ -57,6 +57,7 @@
   vars:
     deployment_name: "{{ vm_name }}-{{ subnet_name }}-{{ location }}"
     enable_hot_patching: false
+    os_disk_size: 127
     os_disk_delete_option: Delete
     network_interface_name: "{{ vm_name }}-nic0"
     nic_delete_option: Delete

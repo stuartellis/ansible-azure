@@ -1,5 +1,5 @@
 admin_username: testadmin
-vm_name: test-vm-0093
+vm_name: test-vm-0095
 enable_acc_net: false
 location: uksouth
 network_security_group_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-vnet-0010/providers/Microsoft.Network/networkSecurityGroups/nsg-sandbox-0020
@@ -12,5 +12,5 @@ subnet_name: subnet-0010
 storage_account_name: sjestoresandbox0010
 vm_size: Standard_B2s
 vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-vnet-0010/providers/Microsoft.Network/virtualNetworks/sandbox-vnet-0010
-winrm_cert_secret_url: https://test-key-vault-0050.vault.azure.net/secrets/ansible-2071-winrm/767ba1ac851d42739c29cc5fa18b0a73
+winrm_cert_secret_url: https://test-key-vault-0050.vault.azure.net/secrets/ansible-2075-winrm/03e52748bada4041a41a53802744be06
 winrm_vault_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-0010/providers/Microsoft.KeyVault/vaults/test-key-vault-0050
