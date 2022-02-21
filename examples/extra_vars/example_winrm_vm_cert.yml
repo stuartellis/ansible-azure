@@ -1,7 +1,5 @@
-cert_prefix: ansible-2075
+computer_name: test-vm-0098
+dns_domain: uksouth.cloudapp.azure.com
 key_vault_name: test-key-vault-0050
 key_vault_rg_name: sandbox-0010
-output_dir: tmp
 pfx_passwd: Qwerty098!
-secret_name: "{{ cert_prefix }}-winrm"
-username: testadmin@localhost
