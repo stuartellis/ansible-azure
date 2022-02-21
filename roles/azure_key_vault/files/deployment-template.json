@@ -68,9 +68,6 @@
             "apiVersion": "2021-04-01-preview",
             "name": "[parameters('keyVaultName')]",
             "location": "[parameters('location')]",
-            "tags": {
-                "displayName": "Key Vault"
-            },
             "properties": {
                 "sku": {
                     "name": "[parameters('vaultSku')]",
