@@ -11,11 +11,18 @@
     - name: key_vault_name
       prompt: Name of the Key Vault
       private: false
+    - name: key_vault_rg_name
+      prompt: Resource Group containing the Key Vault
+      private: false
+    - name: output_dir
+      prompt: Output directory
+      private: false
     - name: pfx_passwd
       prompt: Password for the certificates PFX file
       private: true
   vars:
-    output_dir: tmp
+    secret_encoding: base64
+    secret_file: "{{ cert_prefix }}-secret-b64.txt"
     secret_name: "{{ cert_prefix }}-winrm"
   roles:
     - role: local_cert_gen

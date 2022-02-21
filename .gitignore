@@ -2,6 +2,7 @@
 .vscode
 
 # Generated files
+.venv
 tmp
 
 # Logs

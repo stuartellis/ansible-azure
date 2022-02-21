@@ -45,6 +45,8 @@
         value: "{{ admin_username }}"
       adminPassword:
         value: "{{ admin_password }}"
+      networkSecurityGroupId:
+        value: "{{ network_security_group_id }}"
       patchMode:
         value: "{{ patch_mode }}"
       enableHotpatching:

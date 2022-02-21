@@ -1,5 +1,5 @@
 ---
-- name: Create tmp directory
+- name: Create output directory
   ansible.builtin.file:
     path: "tmp/{{ cert_prefix }}"
     state: directory
@@ -24,10 +24,16 @@
     chdir: "{{ working_dir.path }}"
     cmd: openssl pkcs12 -export -out {{ cert_prefix }}-complete.pfx -inkey {{ cert_prefix }}-key.pem -in {{ cert_prefix }}-cert.pem -passout pass:{{ pfx_passwd }}
 
-- name: Generate JSON for PFX
+- name: Generate JSON for Key Vault from PFX
   delegate_to: localhost
   vars:
     pfx_content: "{{lookup('file', '{{ working_dir.path }}/{{ cert_prefix }}-complete.pfx') | b64encode }}"
   ansible.builtin.template:
     src: key-vault-secret.json.j2
-    dest: "{{ working_dir.path }}/{{ cert_prefix }}-key-vault.json"
+    dest: "{{ working_dir.path }}/{{ cert_prefix }}-secret.json"
+
+- name: Generate Base64 for Key Vault
+  delegate_to: localhost
+  ansible.builtin.copy:
+    content: "{{lookup('file', '{{ working_dir.path }}/{{ cert_prefix }}-secret.json') | b64encode }}"
+    dest: "{{ working_dir.path }}/{{ secret_file }}"

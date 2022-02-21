@@ -8,6 +8,9 @@
         "networkInterfaceName": {
             "type": "String"
         },
+        "networkSecurityGroupId": {
+            "type": "String"
+        },
         "enableAcceleratedNetworking": {
             "type": "Bool"
         },
@@ -106,6 +109,9 @@
                         }
                     }
                 ],
+                "networkSecurityGroup": {
+                    "id": "[parameters('networkSecurityGroupId')]"
+                },
                 "enableAcceleratedNetworking": "[parameters('enableAcceleratedNetworking')]"
             }
         },
@@ -118,7 +124,11 @@
                 "name": "[parameters('publicIpAddressSku')]"
             },
             "properties": {
-                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]"
+                "deleteOption": "[parameters('nicDeleteOption')]",
+                "publicIpAllocationMethod": "[parameters('publicIpAddressType')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('virtualMachineName')]"
+                }
             }
         },
         {

@@ -11,11 +11,11 @@ Ansible requires Python 3. You may run Ansible on Linux, macOS or WSL.
 To set up Ansible, run these commands in a terminal window:
 
     pip3 install --user pipx
-    pipx install ansible-core
+    pipx install ansible --include-deps
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
     ansible-galaxy install -r requirements.yml
-    pipx runpip ansible-core install -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+    pipx runpip ansible install -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
 ## Connecting to Azure
 
@@ -53,7 +53,7 @@ To create a WinRM certificate:
 
 To deploy a Windows VM:
 
-    ansible-playbook -i inventories/localhost ./deploy_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
 
 ### Running Playbooks on Azure Virtual Machines
 

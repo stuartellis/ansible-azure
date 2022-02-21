@@ -14,6 +14,9 @@
     - name: location
       prompt: The location for the resources
       private: false
+    - name: network_security_group_id
+      prompt: ID of the Network Security Group
+      private: false
     - name: os_disk_type
       prompt: OS Disk storage type
       private: false
@@ -60,7 +63,7 @@
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
-    winrm_cert_store_name: "Trusted People"
+    winrm_cert_store_name: "My"
     group_tags:
       - key: "source"
         value: ansible
