@@ -1,7 +1,7 @@
 ---
 - name: Create output directory
   ansible.builtin.file:
-    path: "tmp/{{ cert_prefix }}"
+    path: "tmp/{{ username }}"
     state: directory
     mode: "0700"
   register: working_dir

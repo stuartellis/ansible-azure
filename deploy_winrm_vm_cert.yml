@@ -1,12 +1,15 @@
 ---
-- name: Deploy Certificate for WinRM
+- name: Deploy Server Certificate for WinRM
   hosts: localhost
   vars_prompt:
     - name: cert_prefix
       prompt: Prefix for the certificate names
       private: false
-    - name: username
-      prompt: Admin username for the Virtual Machine
+    - name: computer_name
+      prompt: Name for the Virtual Machine
+      private: false
+    - name: dns_domain
+      prompt: DNS domain for the Virtual Machine
       private: false
     - name: key_vault_name
       prompt: Name of the Key Vault
@@ -21,9 +24,11 @@
       prompt: Password for the certificates PFX file
       private: true
   vars:
+    computer_fqdn_name: "{{ computer_name }}.{{ dns_domain }}"
+    dns_country_name: GB
     secret_encoding: base64
     secret_file: "{{ cert_prefix }}-secret-b64.txt"
     secret_name: "{{ cert_prefix }}-winrm"
   roles:
-    - role: local_cert_gen
+    - role: local_win_server_cert_gen
     - role: key_vault_secret

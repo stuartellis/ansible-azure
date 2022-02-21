@@ -23,7 +23,12 @@ To set up Ansible, run these commands in a terminal window:
 
 To run operations with Ansible, you need a Service Principal in Azure Active Directory. This Service Principal must be a member of the *Contributors* role on the subscriptions in Azure.
 
-Set the service principal details in either the configuration file *$HOME/.azure/credentials*, or as environment variables.
+Set the service principal details in either the configuration file *$HOME/.azure/credentials*, or as environment variables:
+
+- AZURE_CLIENT_ID
+- AZURE_SECRET
+- AZURE_SUBSCRIPTION_ID
+- AZURE_TENANT
 
 ### Certificates for WinRM
 
@@ -47,9 +52,9 @@ To deploy an Azure Key Vault:
 
     ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
 
-To create a WinRM certificate:
+To create a WinRM certificate for a virtual machine:
 
-    ansible-playbook -i inventories/localhost ./deploy_winrm_cert.yml --extra-vars "@examples/extra_vars/example_winrm_cert.yml"
+    ansible-playbook -i inventories/localhost ./deploy_winrm_vm_cert.yml --extra-vars "@examples/extra_vars/example_winrm_vm_cert.yml"
 
 To deploy a Windows VM:
 
@@ -65,6 +70,10 @@ To install developer tools on a Windows VM:
 
     export no_proxy=*
     ansible-playbook -i inventories/azure_rm.yml ./apply_windows_devtools.yml
+
+Enter this command for documentation on the dynamic inventory configuration file:
+
+    ansible-doc -t inventory azure_rm
 
 ## Testing
 
@@ -86,3 +95,5 @@ To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 - [Ansible Collection for Azure](https://docs.ansible.com/ansible/latest/collections/azure/azcollection/)
 - [Azure Resource Manager templates](https://docs.microsoft.com/en-gb/azure/azure-resource-manager/templates/)
 - [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
+- [How to Set up PSRemoting with WinRM and SSL](https://adamtheautomator.com/winrm-ssl/)
+- [Configure Powershell WinRM to use OpenSSL generated Self-Signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
