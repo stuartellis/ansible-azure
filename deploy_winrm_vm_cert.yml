@@ -1,5 +1,5 @@
 ---
-- name: Deploy Server Certificate for WinRM
+- name: Deploy WinRM Server Certificate to Key Vault
   hosts: localhost
   vars_prompt:
     - name: computer_name

@@ -7,6 +7,4 @@
   register: vault_secret
 
 - name: Set secret URL as a fact
-  ansible.builtin.set_fact:
-    fact:
-      secret_url: "{{ vault_secret.stdout | from_json | json_query('id') }}"
+  ansible.builtin.set_fact: secret_url="{{ vault_secret.stdout | from_json | json_query('id') }}"

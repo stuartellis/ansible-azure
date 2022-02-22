@@ -9,10 +9,9 @@ public_ip_address_sku: Basic
 vm_resource_group_name: sandbox-0010
 storage_account_name: sjestoresandbox0010
 subnet_name: subnet-0010
-vm_name: test-vm-0095
+vm_name: test-vm-0110
 vm_size: Standard_B2s
 vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-vnet-0010/providers/Microsoft.Network/virtualNetworks/sandbox-vnet-0010
-winrm_cert_secret_url: https://test-key-vault-0050.vault.azure.net/secrets/ansible-2075-winrm/03e52748bada4041a41a53802744be06
 key_vault_name: test-key-vault-0050
 key_vault_rg_name: sandbox-0010
 pfx_passwd: Qwerty098!

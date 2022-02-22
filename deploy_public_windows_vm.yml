@@ -47,12 +47,6 @@
     - name: vnet_id
       prompt: ID of the virtual network
       private: false
-    - name: winrm_cert_secret_url
-      prompt: URL of the WinRM certificate
-      private: false
-    - name: winrm_vault_id
-      prompt: ID of the Key Vault for WinRM certificates
-      private: false
     - name: key_vault_name
       prompt: Name of the Key Vault
       private: false

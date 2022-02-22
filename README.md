@@ -40,6 +40,14 @@ You also need certificates to connect to Windows Virtual Machines with WinRM. Th
 
 > To install a certificate for WinRM on a Virtual Machine from a Key Vault, it must be uploaded as [a JSON object](https://docs.microsoft.com/en-us/javascript/api/@azure/arm-compute/winrmlistener?view=azure-node-latest).
 
+### Configuring the Inventories
+
+This project includes one dynamic inventory for Azure. This inventory is *inventories/azure_rm.yml*.
+
+Enter this command for documentation on dynamic inventory configuration files:
+
+    ansible-doc -t inventory azure_rm
+
 ## Usage
 
 > Use the *localhost* inventory to run commands on Azure APIs.
@@ -56,10 +64,6 @@ To deploy an Azure Key Vault:
 
     ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
 
-To create a WinRM certificate for a virtual machine:
-
-    ansible-playbook -i inventories/localhost ./deploy_winrm_vm_cert.yml --extra-vars "@examples/extra_vars/example_winrm_vm_cert.yml"
-
 To deploy a Windows VM:
 
     ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
@@ -70,14 +74,15 @@ To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory
 
     ansible-inventory -i inventories/azure_rm.yml --graph
 
+To test Ansible access to Windows VMs:
+
+    export no_proxy=*
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_windows_vm.yml
+
 To install developer tools on a Windows VM:
 
     export no_proxy=*
     ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_devtools.yml
-
-Enter this command for documentation on the dynamic inventory configuration file:
-
-    ansible-doc -t inventory azure_rm
 
 ## Testing
 

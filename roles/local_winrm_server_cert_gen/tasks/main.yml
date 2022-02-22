@@ -32,7 +32,7 @@
     src: key-vault-secret.json.j2
     dest: "{{ working_dir.path }}/{{ computer_name }}-secret.json"
 
-- name: Generate Base64 for Key Vault
+- name: Generate Base64 for Key Vault from JSON
   delegate_to: localhost
   ansible.builtin.copy:
     content: "{{lookup('file', '{{ working_dir.path }}/{{ computer_name }}-secret.json') | b64encode }}"
