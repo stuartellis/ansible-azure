@@ -2,6 +2,21 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "adminUsername": {
+            "type": "String"
+        },
+        "adminPassword": {
+            "type": "SecureString"
+        },
+        "diagnosticsStorageAccountName": {
+            "type": "String"
+        },
+        "enableAcceleratedNetworking": {
+            "type": "Bool"
+        },
+        "enableHotpatching": {
+            "type": "Bool"
+        },
         "location": {
             "type": "String"
         },
@@ -11,31 +26,7 @@
         "networkSecurityGroupId": {
             "type": "String"
         },
-        "enableAcceleratedNetworking": {
-            "type": "Bool"
-        },
-        "subnetName": {
-            "type": "String"
-        },
-        "virtualNetworkId": {
-            "type": "String"
-        },
-        "publicIpAddressName": {
-            "type": "String"
-        },
-        "publicIpAddressType": {
-            "type": "String"
-        },
-        "publicIpAddressSku": {
-            "type": "String"
-        },
-        "pipDeleteOption": {
-            "type": "String"
-        },
-        "virtualMachineName": {
-            "type": "String"
-        },
-        "virtualMachineComputerName": {
+        "nicDeleteOption": {
             "type": "String"
         },
         "osVersion": {
@@ -51,37 +42,46 @@
         "osDiskDeleteOption": {
             "type": "String"
         },
-        "virtualMachineSize": {
-            "type": "String"
-        },
-        "nicDeleteOption": {
-            "type": "String"
-        },
-        "adminUsername": {
-            "type": "String"
-        },
-        "adminPassword": {
-            "type": "SecureString"
-        },
         "patchMode": {
             "type": "String"
         },
-        "enableHotpatching": {
-            "type": "Bool"
+        "pipDeleteOption": {
+            "type": "String"
         },
-        "diagnosticsStorageAccountName": {
+        "publicIpAddressName": {
+            "type": "String"
+        },
+        "publicIpAddressType": {
+            "type": "String"
+        },
+        "publicIpAddressSku": {
             "type": "String"
         },
         "resourceTags": {
             "type": "object"
         },
+        "subnetName": {
+            "type": "String"
+        },
+        "virtualMachineName": {
+            "type": "String"
+        },
+        "virtualMachineSize": {
+            "type": "String"
+        },
+        "virtualMachineComputerName": {
+            "type": "String"
+        },
+        "virtualNetworkId": {
+            "type": "String"
+        },
+        "winrmCertStoreName": {
+            "type": "String"
+        },
         "winrmCertSecretUrl": {
             "type": "String"
         },
         "winrmVaultId": {
-            "type": "String"
-        },
-        "winrmCertStoreName": {
             "type": "String"
         }
     },
