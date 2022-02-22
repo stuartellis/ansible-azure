@@ -72,6 +72,9 @@
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
+    resource_tags:
+      environment: dev
+      phase: poc
     secret_encoding: base64
     secret_file: "{{ computer_name }}-secret-b64.txt"
     secret_name: "{{ computer_name }}-winrm"

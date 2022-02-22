@@ -5,7 +5,7 @@
     name: "{{ key_vault_name }}"
   register: keyvault
 
-- name: Get KeyVault ID
+- name: Get Key Vault ID
   set_fact: winrm_vault_id="{{ keyvault['keyvaults'][0]['id'] }}"
 
 - name: Deploy {{ vm_name }} to {{ vm_resource_group_name }} in {{ location }}
@@ -17,55 +17,57 @@
     location: "{{ location }}"
     template: "{{ lookup('file', 'deployment-template.json') }}"
     parameters:
+      adminPassword:
+        value: "{{ admin_password }}"
+      adminUsername:
+        value: "{{ admin_username }}"
+      diagnosticsStorageAccountName:
+        value: "{{ storage_account_name }}"
+      enableAcceleratedNetworking:
+        value: "{{ enable_acc_net }}"
+      enableHotpatching:
+        value: "{{ enable_hot_patching }}"
       location:
         value: "{{ location }}"
       networkInterfaceName:
         value: "{{ network_interface_name }}"
-      enableAcceleratedNetworking:
-        value: "{{ enable_acc_net }}"
-      subnetName:
-        value: "{{ subnet_name }}"
-      virtualNetworkId:
-        value: "{{ vnet_id }}"
-      publicIpAddressName:
-        value: "{{ public_ip_address_name }}"
-      publicIpAddressType:
-        value: "{{ public_ip_address_type }}"
-      publicIpAddressSku:
-        value: "{{ public_ip_address_sku }}"
-      pipDeleteOption:
-        value: "{{ pip_delete_option }}"
-      virtualMachineName:
-        value: "{{ vm_name }}"
-      virtualMachineComputerName:
-        value: "{{ vm_name }}"
-      osVersion:
-        value: "{{ os_version }}"
+      networkSecurityGroupId:
+        value: "{{ network_security_group_id }}"
+      nicDeleteOption:
+        value: "{{ nic_delete_option }}"
+      osDiskDeleteOption:
+        value: "{{ os_disk_delete_option }}"
       osDiskSize:
         value: "{{ os_disk_size }}"
       osDiskType:
         value: "{{ os_disk_type }}"
-      osDiskDeleteOption:
-        value: "{{ os_disk_delete_option }}"
-      virtualMachineSize:
-        value: "{{ vm_size }}"
-      nicDeleteOption:
-        value: "{{ nic_delete_option }}"
-      adminUsername:
-        value: "{{ admin_username }}"
-      adminPassword:
-        value: "{{ admin_password }}"
-      networkSecurityGroupId:
-        value: "{{ network_security_group_id }}"
+      osVersion:
+        value: "{{ os_version }}"
       patchMode:
         value: "{{ patch_mode }}"
-      enableHotpatching:
-        value: "{{ enable_hot_patching }}"
-      diagnosticsStorageAccountName:
-        value: "{{ storage_account_name }}"
+      pipDeleteOption:
+        value: "{{ pip_delete_option }}"
+      publicIpAddressName:
+        value: "{{ public_ip_address_name }}"
+      publicIpAddressSku:
+        value: "{{ public_ip_address_sku }}"
+      publicIpAddressType:
+        value: "{{ public_ip_address_type }}"
+      resourceTags:
+        value: "{{ resource_tags }}"
+      subnetName:
+        value: "{{ subnet_name }}"
+      virtualMachineComputerName:
+        value: "{{ vm_name }}"
+      virtualMachineName:
+        value: "{{ vm_name }}"
+      virtualMachineSize:
+        value: "{{ vm_size }}"
+      virtualNetworkId:
+        value: "{{ vnet_id }}"
       winrmCertSecretUrl:
         value: "{{ secret_url }}"
-      winrmVaultId:
-        value: "{{ winrm_vault_id }}"
       winrmCertStoreName:
         value: "{{ winrm_cert_store_name }}"
+      winrmVaultId:
+        value: "{{ winrm_vault_id }}"
