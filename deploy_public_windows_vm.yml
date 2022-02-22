@@ -53,18 +53,37 @@
     - name: winrm_vault_id
       prompt: ID of the Key Vault for WinRM certificates
       private: false
+    - name: key_vault_name
+      prompt: Name of the Key Vault
+      private: false
+    - name: key_vault_rg_name
+      prompt: Resource Group containing the Key Vault
+      private: false
+    - name: pfx_passwd
+      prompt: Password for the certificates PFX file
+      private: true
 
   vars:
+    computer_name: "{{ vm_name }}"
+    computer_fqdn_name: "{{ computer_name }}.{{ dns_domain }}"
     deployment_name: "{{ vm_name }}-{{ subnet_name }}-{{ location }}"
+    dns_country_name: GB
+    dns_domain: "{{ location }}.cloudapp.azure.com"
     enable_hot_patching: false
-    os_disk_size: 127
-    os_disk_delete_option: Delete
     network_interface_name: "{{ vm_name }}-nic0"
     nic_delete_option: Delete
+    output_dir: tmp
+    os_disk_size: 127
+    os_disk_delete_option: Delete
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
+    secret_encoding: base64
+    secret_file: "{{ computer_name }}-secret-b64.txt"
+    secret_name: "{{ computer_name }}-winrm"
     winrm_cert_store_name: "My"
 
   roles:
+    - role: local_winrm_server_cert_gen
+    - role: key_vault_secret
     - role: windows_single_public_vm

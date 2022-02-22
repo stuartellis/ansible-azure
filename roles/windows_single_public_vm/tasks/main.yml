@@ -1,4 +1,13 @@
 ---
+- name: Get Key Vault by name
+  azure_rm_keyvault_info:
+    resource_group: "{{ key_vault_rg_name }}"
+    name: "{{ key_vault_name }}"
+  register: keyvault
+
+- name: Get KeyVault ID
+  set_fact: winrm_vault_id="{{ keyvault['keyvaults'][0]['id'] }}"
+
 - name: Deploy {{ vm_name }} to {{ vm_resource_group_name }} in {{ location }}
   azure.azcollection.azure_rm_deployment:
     state: present
@@ -55,7 +64,7 @@
       diagnosticsStorageAccountName:
         value: "{{ storage_account_name }}"
       winrmCertSecretUrl:
-        value: "{{ winrm_cert_secret_url }}"
+        value: "{{ secret_url }}"
       winrmVaultId:
         value: "{{ winrm_vault_id }}"
       winrmCertStoreName:

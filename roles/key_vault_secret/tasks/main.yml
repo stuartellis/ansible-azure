@@ -3,5 +3,10 @@
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
-    cmd: "az keyvault secret set --name {{ secret_name }} --vault-name {{ key_vault_name }} --file {{ secret_file }}"
+    cmd: "az keyvault secret set --name {{ secret_name }} -o json --vault-name {{ key_vault_name }} --file {{ secret_file }}"
   register: vault_secret
+
+- name: Set secret URL as a fact
+  ansible.builtin.set_fact:
+    fact:
+      secret_url: "{{ vault_secret.stdout | from_json | json_query('id') }}"
