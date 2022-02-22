@@ -2,7 +2,7 @@
 .vscode
 
 # Generated files
-.venv
+*.retry
 tmp
 
 # Logs
