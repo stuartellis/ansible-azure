@@ -8,16 +8,18 @@
     location: "{{ location }}"
     template: "{{ lookup('file', 'deployment-template.json') }}"
     parameters:
-      location:
-        value: "{{ location }}"
-      operatorsId:
-        value: "{{ object_id }}"
-      keyVaultName:
-        value: "{{ key_vault_name }}"
       certificatesPermissions:
         value: "{{ certificates_permissions }}"
       keysPermissions:
         value: "{{ keys_permissions }}"
+      keyVaultName:
+        value: "{{ key_vault_name }}"
+      location:
+        value: "{{ location }}"
+      operatorsId:
+        value: "{{ object_id }}"
+      resourceTags:
+        value: "{{ resource_tags }}"
       secretsPermissions:
         value: "{{ secrets_permissions }}"
       vaultSku:

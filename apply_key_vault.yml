@@ -29,6 +29,9 @@
 
   vars:
     deployment_name: "{{ key_vault_name }}-{{ location }}"
+    resource_tags:
+      environment: dev
+      phase: poc
 
   roles:
     - role: azure_key_vault

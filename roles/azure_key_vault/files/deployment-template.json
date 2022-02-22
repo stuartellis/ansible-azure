@@ -40,6 +40,9 @@
                 "description": "Specifies the permissions to keys in the vault. Valid values are: all, encrypt, decrypt, wrapKey, unwrapKey, sign, verify, get, list, create, update, import, delete, backup, restore, recover, and purge."
             }
         },
+        "resourceTags": {
+            "type": "object"
+        },
         "secretsPermissions": {
             "type": "array",
             "defaultValue": [
@@ -68,6 +71,7 @@
             "apiVersion": "2021-04-01-preview",
             "name": "[parameters('keyVaultName')]",
             "location": "[parameters('location')]",
+            "tags": "[parameters('resourceTags')]",
             "properties": {
                 "sku": {
                     "name": "[parameters('vaultSku')]",
