@@ -10,11 +10,11 @@ Ansible requires Python 3. You may run Ansible on Linux, macOS or WSL.
 
 To set up Ansible, run these commands in a terminal window:
 
-    pip3 install --user pipx
-    pipx install ansible --include-deps
-    pipx inject ansible pywinrm
+    pip3 install --user ansible pywinrm
     ansible-galaxy install -r requirements.yml
-    pipx runpip ansible install -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+    pip3 install --user -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
+
+> Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools.
 
 To install Ansible Lint, run these commands in a terminal window:
 
@@ -53,6 +53,10 @@ To create an empty resource group:
 To delete a resource group and all of the resources in it:
 
     ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+
+To delete any ARM deployment:
+
+    ansible-playbook -i inventories/localhost ./delete_arm_deployment.yml --extra-vars "resource_group_name=sandbox-0010 deployment_name=test-vm-0112-subnet-0010-uksouth location=uksouth"
 
 To deploy an Azure Key Vault:
 
