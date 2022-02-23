@@ -19,7 +19,7 @@
       private: false
 
   tasks:
-    - name: Deploy "{{ deployment_name }}" to "{{ resource_group_name }}"
+    - name: Deploy {{ deployment_name }} to {{ resource_group_name }} {{ location }}
       azure.azcollection.azure_rm_deployment:
         state: present
         deployment_mode: incremental
