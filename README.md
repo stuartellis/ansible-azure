@@ -54,10 +54,6 @@ To delete a resource group and all of the resources in it:
 
     ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
-To delete any ARM deployment:
-
-    ansible-playbook -i inventories/localhost ./delete_arm_deployment.yml --extra-vars "resource_group_name=sandbox-0010 deployment_name=test-vm-0112-subnet-0010-uksouth location=uksouth"
-
 To deploy an Azure Key Vault:
 
     ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
