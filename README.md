@@ -99,4 +99,4 @@ To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 - [Azure Resource Manager templates](https://docs.microsoft.com/en-gb/azure/azure-resource-manager/templates/)
 - [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
 - [How to Set up PSRemoting with WinRM and SSL](https://adamtheautomator.com/winrm-ssl/)
-- [Configure Powershell WinRM to use OpenSSL generated Self-Signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
+- [Configure Powershell WinRM to use OpenSSL generated self-signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
