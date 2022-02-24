@@ -1,0 +1,9 @@
+exclude_paths:
+  - .cache/
+  - examples/
+  - inventories/
+  - tmp/
+  - ansible-lint
+offline: true
+skip_list:
+  - no-changed-when

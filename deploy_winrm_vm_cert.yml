@@ -28,4 +28,4 @@
     secret_name: "{{ computer_name }}-winrm"
   roles:
     - role: local_winrm_server_cert_gen
-    - role: key_vault_secret
+    - role: key_vault_secret_file

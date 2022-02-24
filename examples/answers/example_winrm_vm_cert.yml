@@ -1,6 +1,6 @@
 cert_country_name: GB
-computer_name: test-vm-0105
+computer_name: test-vm-0202
 dns_domain: uksouth.cloudapp.azure.com
-key_vault_name: test-key-vault-0050
+key_vault_name: test-key-vault-0100
 key_vault_rg_name: sandbox-0010
 pfx_passwd: Qwerty098!

@@ -17,16 +17,22 @@
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
-    cmd: |
-      openssl req -config openssl.cnf -x509 -nodes -days 3650 -newkey rsa:2048 -out {{ computer_name }}-cert.pem -outform PEM -keyout {{ computer_name }}-key.pem -subj "/CN={{ computer_name }}"
+    cmd: >
+      openssl req -config openssl.cnf
+       -x509 -nodes -days 3650 -newkey rsa:2048
+        -out {{ computer_name }}-cert.pem -outform PEM -keyout {{ computer_name }}-key.pem
+         -subj "/CN={{ computer_name }}"
     creates: "{{ computer_name }}-*.pem"
 
 - name: Generate PFX file
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
-    cmd: |
-      openssl pkcs12 -export -out {{ computer_name }}-complete.pfx -inkey {{ computer_name }}-key.pem -in {{ computer_name }}-cert.pem -passout pass:{{ pfx_passwd }}
+    cmd: >
+      openssl pkcs12 -export
+       -out {{ computer_name }}-complete.pfx
+        -inkey {{ computer_name }}-key.pem -in {{ computer_name }}-cert.pem
+         -passout pass:{{ pfx_passwd }}
     creates: "{{ computer_name }}-complete.pfx"
 
 - name: Generate JSON for Key Vault from PFX

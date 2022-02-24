@@ -1,5 +1,5 @@
 ---
-- name: Set secret in Key Vault
+- name: Set secret in Key Vault from {{ secret_file }}
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"

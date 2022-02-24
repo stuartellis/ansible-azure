@@ -57,7 +57,7 @@ To run a playbook on the target computers, use *ansible-playbook* without *--che
 
 To deploy a new Windows VM:
 
-    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "vm_name=test-vm-1001 @examples/answers/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "@examples/answers/example_windows_vm.yml"
 
 This playbook creates copies of the WinRM server certificates for new virtual machines in the *tmp/* directory of this project.
 

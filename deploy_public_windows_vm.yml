@@ -2,11 +2,17 @@
 - name: Deploy Example Windows VM
   hosts: localhost
   vars_prompt:
+    - name: vm_name
+      prompt: Name of the virtual machine
+      private: false
     - name: admin_username
       prompt: The admin username for the Virtual Machine
       private: false
     - name: admin_password
       prompt: The admin password for the Virtual Machine
+      private: true
+    - name: pfx_passwd
+      prompt: Password for the certificates PFX file
       private: true
     - name: enable_acc_net
       prompt: Enable accelerated networking?
@@ -35,9 +41,6 @@
     - name: subnet_name
       prompt: Name of the subnet
       private: false
-    - name: vm_name
-      prompt: Name of the virtual machine
-      private: false
     - name: vm_resource_group_name
       prompt: Resource group for the VM resources
       private: false
@@ -53,9 +56,6 @@
     - name: key_vault_rg_name
       prompt: Resource Group containing the Key Vault
       private: false
-    - name: pfx_passwd
-      prompt: Password for the certificates PFX file
-      private: true
 
   vars:
     computer_name: "{{ vm_name }}"
@@ -82,5 +82,5 @@
 
   roles:
     - role: local_winrm_server_cert_gen
-    - role: key_vault_secret
+    - role: key_vault_secret_file
     - role: windows_single_public_vm
