@@ -1,0 +1,31 @@
+{
+  "name": "ansible-azure",
+  "version": "0.9.0",
+  "description": "Ansible for Azure",
+  "scripts": {
+    "ansible:lint": "ansible-lint -qq",
+    "test": "ansible-lint -qq",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stuartellis/ansible-azure.git"
+  },
+  "keywords": [
+    "ansible",
+    "azure"
+  ],
+  "author": "Stuart Ellis <stuart@stuartellis.name>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stuartellis/ansible-azure/issues"
+  },
+  "homepage": "https://github.com/stuartellis/ansible-azure#readme",
+  "devDependencies": {
+    "husky": "^7.0.0",
+    "lint-staged": "^12.3.4"
+  },
+  "lint-staged": {
+    "**/*.{yml,yaml}": "ansible-lint -qq"
+  }
+}

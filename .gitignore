@@ -5,3 +5,6 @@
 *.retry
 .cache
 tmp
+
+# npm
+node_modules
