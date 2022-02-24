@@ -23,9 +23,11 @@
   "homepage": "https://github.com/stuartellis/ansible-azure#readme",
   "devDependencies": {
     "husky": "^7.0.0",
+    "jsonlint": "^1.6.3",
     "lint-staged": "^12.3.4"
   },
   "lint-staged": {
+    "**/*.json": "jsonlint -cq",
     "**/*.{yml,yaml}": "ansible-lint -qq"
   }
 }
