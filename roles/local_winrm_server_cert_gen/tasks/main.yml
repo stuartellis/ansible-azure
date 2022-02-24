@@ -1,14 +1,15 @@
 ---
 - name: Create output directory
   ansible.builtin.file:
+    mode: 0700
     path: "{{ output_dir }}/{{ computer_name }}"
     state: directory
-    mode: "0700"
   register: working_dir
 
 - name: Provide OpenSSL config file
   delegate_to: localhost
   ansible.builtin.template:
+    mode: 0600
     src: openssl.cnf.j2
     dest: "{{ working_dir.path }}/openssl.cnf"
 
@@ -16,24 +17,30 @@
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
-    cmd: openssl req -config openssl.cnf -x509 -nodes -days 3650 -newkey rsa:2048 -out {{ computer_name }}-cert.pem -outform PEM -keyout {{ computer_name }}-key.pem -subj "/CN={{ computer_name }}"
+    cmd: |
+      openssl req -config openssl.cnf -x509 -nodes -days 3650 -newkey rsa:2048 -out {{ computer_name }}-cert.pem -outform PEM -keyout {{ computer_name }}-key.pem -subj "/CN={{ computer_name }}"
+    creates: "{{ computer_name }}-*.pem"
 
 - name: Generate PFX file
   delegate_to: localhost
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
-    cmd: openssl pkcs12 -export -out {{ computer_name }}-complete.pfx -inkey {{ computer_name }}-key.pem -in {{ computer_name }}-cert.pem -passout pass:{{ pfx_passwd }}
+    cmd: |
+      openssl pkcs12 -export -out {{ computer_name }}-complete.pfx -inkey {{ computer_name }}-key.pem -in {{ computer_name }}-cert.pem -passout pass:{{ pfx_passwd }}
+    creates: "{{ computer_name }}-complete.pfx"
 
 - name: Generate JSON for Key Vault from PFX
   delegate_to: localhost
   vars:
-    pfx_content: "{{lookup('file', '{{ working_dir.path }}/{{ computer_name }}-complete.pfx') | b64encode }}"
+    pfx_content: "{{ lookup('file', '{{ working_dir.path }}/{{ computer_name }}-complete.pfx') | b64encode }}"
   ansible.builtin.template:
+    mode: 0600
     src: key-vault-secret.json.j2
     dest: "{{ working_dir.path }}/{{ computer_name }}-secret.json"
 
 - name: Generate Base64 for Key Vault from JSON
   delegate_to: localhost
   ansible.builtin.copy:
-    content: "{{lookup('file', '{{ working_dir.path }}/{{ computer_name }}-secret.json') | b64encode }}"
+    content: "{{ lookup('file', '{{ working_dir.path }}/{{ computer_name }}-secret.json') | b64encode }}"
+    mode: 0600
     dest: "{{ working_dir.path }}/{{ computer_name }}-secret-b64.txt"

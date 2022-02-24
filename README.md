@@ -1,8 +1,6 @@
 # Ansible for Azure
 
-[Ansible](https://www.ansible.com/) playbooks and roles for Azure.
-
-Use [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) to check the roles.
+This project enables [Ansible](https://www.ansible.com/) on Azure.
 
 ## Setting Up
 
@@ -14,12 +12,7 @@ To set up Ansible, run these commands in a terminal window:
     ansible-galaxy install -r requirements.yml
     pip3 install --user -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
-> Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools.
-
-To install Ansible Lint, run these commands in a terminal window:
-
-    pipx install ansible-lint
-    pipx inject ansible-lint ansible-core yamllint
+> Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools. For this reason, we install Ansible and the required Python modules to your home directory.
 
 ## Connecting to Azure
 
@@ -34,17 +27,43 @@ Set the service principal details in either the configuration file *$HOME/.azure
 - AZURE_SUBSCRIPTION_ID
 - AZURE_TENANT
 
-### Configuring the Inventories
-
-This project includes one dynamic inventory for Azure. This inventory is *inventories/azure_rm.yml*.
-
-Enter this command for documentation on dynamic inventory configuration files:
-
-    ansible-doc -t inventory azure_rm
-
 ## Usage
 
-> Use the *localhost* inventory to run commands on Azure APIs.
+This project uses the dynamic inventory *inventories/azure_rm.yml*. The dynamic inventory automatically finds the virtual machines on Azure. It defines groups of computers by location and tags. These groups can be used as targets for Ansible commands.
+
+## Querying Virtual Machines
+
+To list the available Virtual Machines:
+
+    ansible-inventory -i inventories/azure_rm.yml --graph
+
+To test Ansible access to Windows VMs on Azure:
+
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_windows_vm.yml
+
+## Running Commands on Computers
+
+Use playbooks to define a set of commands. For example, this project includes the playbook *apply_windows_devtools* to install and update a collection of standard developer tools on the target Windows computers, and the playbook *apply_windows_updates.yml* to run Windows Update on target computers.
+
+To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
+
+    ansible-playbook --ask-pass --user testadmin --check -i inventories/azure_rm.yml ./apply_windows_updates.yml
+
+To run a playbook on the target computers, use *ansible-playbook* without *--check*:
+
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_updates.yml
+
+## Deploying New Virtual Machines on Azure
+
+To deploy a new Windows VM:
+
+    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "vm_name=test-vm-1001 @examples/answers/example_windows_vm.yml"
+
+This playbook creates copies of the WinRM server certificates for new virtual machines in the *tmp/* directory of this project.
+
+## Working with Azure Resource Groups
+
+> We use the *localhost* inventory to run commands on Azure itself.
 
 To create an empty resource group:
 
@@ -54,55 +73,50 @@ To delete a resource group and all of the resources in it:
 
     ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
-## Resources for VMs
+## Deploying Other Azure Resources
+
+This project also includes playbooks for deploying several types of resources on Azure. These playbooks are useful for setting up resources for testing.
 
 To deploy a Virtual Network:
 
-    ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/extra_vars/example_minimal_vnet.yml"
-
-To deploy a Storage Account for diagnostics:
-
-    ansible-playbook -i inventories/localhost ./deploy_diag_storage.yml --extra-vars "@examples/extra_vars/example_diag_storage.yml"
+    ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/answers/example_minimal_vnet.yml"
 
 To deploy an Azure Key Vault:
 
-    ansible-playbook -i inventories/localhost ./apply_key_vault.yml --extra-vars "@examples/extra_vars/example_az_key_vault.yml"
+    ansible-playbook -i inventories/localhost ./deploy_minimal_key_vault.yml --extra-vars "@examples/answers/example_minimal_key_vault.yml"
 
-To deploy a Windows VM:
+To deploy a Storage Account for VM diagnostics:
 
-    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "@examples/extra_vars/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./deploy_vm_diag_storage.yml --extra-vars "@examples/answers/example_vm_diag_storage.yml"
 
-### Running Playbooks on Azure Virtual Machines
+## Developing Ansible Code
 
-To list the available Virtual Machines, use the *azure_rm.yml* dynamic inventory:
+### Tools
 
-    ansible-inventory -i inventories/azure_rm.yml --graph
+Install [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) and [the Visual Studio Code extension for Ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible).
 
-To test Ansible access to Windows VMs:
+To install Ansible Lint, run these commands in a terminal window:
 
-    export no_proxy=*
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_windows_vm.yml
+    pipx install ansible-lint
+    pipx inject ansible-lint ansible-core yamllint
 
-To install developer tools on a Windows VM:
+To check the roles with Ansible Lint:
 
-    export no_proxy=*
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_devtools.yml
+    ansible-lint roles/
 
-## Testing
+Always use *syntax-check* to validate a new playbook before you run it:
 
-Run *ansible-lint* to check the roles:
+    ansible-playbook --syntax-check deploy_resource_group.yml
 
-    ansible-lint roles
+### Examples
 
-Always use *syntax-check* to validate a playbook before you run it:
+This project includes examples of using Ansible to deploy ARM templates and run the Azure CLI. See the role *key_vault_secret* for an example of running the Azure CLI in an Ansible task.
 
-    ansible-playbook --syntax-check apply_resource_group.yml
+### Running New ARM Templates
 
-To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
+Use the playbook *deploy_arm_template.yml* to run any ARM template. This may be useful to test ARM templates as you develop roles and playbooks.
 
-    ansible-playbook --check apply_resource_group.yml
-
-## Resources
+## Documentation
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
 - [Ansible Collection for Azure](https://docs.ansible.com/ansible/latest/collections/azure/azcollection/)

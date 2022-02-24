@@ -39,7 +39,7 @@
       prompt: Name of the virtual machine
       private: false
     - name: vm_resource_group_name
-      prompt: The resource group for the VM resources
+      prompt: Resource group for the VM resources
       private: false
     - name: vm_size
       prompt: Size of the virtual machine
@@ -61,7 +61,7 @@
     computer_name: "{{ vm_name }}"
     computer_fqdn_name: "{{ computer_name }}.{{ dns_domain }}"
     deployment_name: "{{ vm_name }}-{{ subnet_name }}-{{ location }}"
-    dns_country_name: GB
+    cert_country_name: GB
     dns_domain: "{{ location }}.cloudapp.azure.com"
     enable_hot_patching: false
     network_interface_name: "{{ vm_name }}-nic0"

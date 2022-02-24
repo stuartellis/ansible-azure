@@ -12,7 +12,7 @@ extendedKeyUsage = serverAuth, clientAuth
 subjectAltName = DNS:"{{ computer_name }}",DNS:"{{ computer_fqdn_name }}"
 
 [req_distinguished_name]
-countryName = {{ dns_country_name }}
+countryName = {{ cert_country_name }}
 0.organizationName = {{ dns_domain }} 
 commonName = {{ computer_fqdn_name }}
 

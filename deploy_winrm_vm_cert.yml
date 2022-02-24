@@ -8,6 +8,9 @@
     - name: dns_domain
       prompt: DNS domain for the Virtual Machine
       private: false
+    - name: cert_country_name
+      prompt: Country name for certificate
+      private: false
     - name: key_vault_name
       prompt: Name of the Key Vault
       private: false
@@ -19,7 +22,6 @@
       private: true
   vars:
     computer_fqdn_name: "{{ computer_name }}.{{ dns_domain }}"
-    dns_country_name: GB
     output_dir: tmp
     secret_encoding: base64
     secret_file: "{{ computer_name }}-secret-b64.txt"

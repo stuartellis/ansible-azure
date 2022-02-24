@@ -8,7 +8,7 @@
     - name: key_vault_rg_name
       prompt: The name of the key vault
       private: false
-    - name: object_id
+    - name: operators_id
       prompt: Identity in Azure Active Directory for the vault
       private: false
     - name: certificates_permissions
@@ -34,4 +34,4 @@
       phase: poc
 
   roles:
-    - role: azure_key_vault
+    - role: azure_minimal_key_vault

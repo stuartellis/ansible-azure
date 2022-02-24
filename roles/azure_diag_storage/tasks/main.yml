@@ -4,7 +4,7 @@
     state: present
     deployment_mode: incremental
     deployment_name: "{{ deployment_name }}"
-    resource_group_name: "{{ store_account_name }}"
+    resource_group_name: "{{ resource_group_name }}"
     location: "{{ location }}"
     template: "{{ lookup('file', 'store-deployment-template.json') }}"
     parameters:

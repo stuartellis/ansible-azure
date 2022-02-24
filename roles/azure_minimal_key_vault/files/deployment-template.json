@@ -85,7 +85,7 @@
                 "publicNetworkAccess": "Enabled",
                 "accessPolicies": [
                     {
-                        "operatorsId": "[parameters('operatorsId')]",
+                        "objectId": "[parameters('operatorsId')]",
                         "tenantId": "[subscription().tenantId]",
                         "permissions": {
                             "keys": "[parameters('keysPermissions')]",
