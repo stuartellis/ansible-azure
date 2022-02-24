@@ -1,0 +1,4 @@
+location: uksouth
+ops_source_address_prefix: "*"
+resource_group_name: sandbox-net-0020-rg
+vnet_name: vnet-sandbox-0020

@@ -1,0 +1,34 @@
+---
+- name: Get facts for network security group
+  azure_rm_securitygroup_info:
+    resource_group: "{{ resource_group_name }}"
+    name: "{{ nsg_name }}"
+  register: nsg
+
+- name: Deploy {{ nsg_name }} to {{ resource_group_name }} in {{ location }}
+  azure.azcollection.azure_rm_deployment:
+    state: present
+    deployment_mode: incremental
+    deployment_name: "{{ deployment_name }}"
+    resource_group_name: "{{ resource_group_name }}"
+    location: "{{ location }}"
+    template: "{{ lookup('file', 'vnet-deployment-template.json') }}"
+    parameters:
+      location:
+        value: "{{ location }}"
+      networkSecurityGroupId:
+        value: "{{ nsg.securitygroups[0].id }}"
+      resourceTags:
+        value: "{{ resource_tags }}"
+      subnet1Prefix:
+        value: "{{ subnet_1_prefix }}"
+      subnet1Name:
+        value: "{{ subnet_1_name }}"
+      subnet2Prefix:
+        value: "{{ subnet_2_prefix }}"
+      subnet2Name:
+        value: "{{ subnet_2_name }}"
+      vnetAddressPrefix:
+        value: "{{ vnet_address_prefix }}"
+      vnetName:
+        value: "{{ vnet_name }}"

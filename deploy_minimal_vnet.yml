@@ -1,0 +1,35 @@
+---
+- name: Deploy Virtual Network
+  hosts: localhost
+  vars_prompt:
+    - name: ops_source_address_prefix
+      prompt: Operations IP address prefix
+      private: false
+    - name: location
+      prompt: Location for the resources
+      private: false
+    - name: resource_group_name
+      prompt: Resource group for the resources
+      private: false
+    - name: vnet_name
+      prompt: Name of the virtual network
+      private: false
+
+  vars:
+    nsg_name: "{{ vnet_name }}-nsg-0010"
+    subnet_1_prefix: "10.0.0.0/24"
+    subnet_1_name: "{{ vnet_name }}-subnet-0010"
+    subnet_2_prefix: "10.0.1.0/24"
+    subnet_2_name: "{{ vnet_name }}-subnet-0020"
+    vnet_address_prefix: "10.0.0.0/16"
+    resource_tags:
+      environment: dev
+      phase: poc
+
+  roles:
+    - role: azure_minimal_nsg
+      vars:
+        deployment_name: "{{ nsg_name }}-{{ location }}"
+    - role: azure_minimal_vnet
+      vars:
+        deployment_name: "{{ vnet_name }}-{{ location }}"

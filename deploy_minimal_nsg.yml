@@ -1,0 +1,24 @@
+---
+- name: Deploy Network Security Group
+  hosts: localhost
+  vars_prompt:
+    - name: nsg_name
+      prompt: Name of the network security group
+      private: false
+    - name: ops_source_address_prefix
+      prompt: Operations IP address prefix
+      private: false
+    - name: location
+      prompt: Location for the resources
+      private: false
+    - name: resource_group_name
+      prompt: Resource group for the resources
+      private: false
+  vars:
+    deployment_name: "{{ nsg_name }}-{{ location }}"
+    resource_tags:
+      environment: dev
+      phase: poc
+
+  roles:
+    - role: azure_minimal_nsg

@@ -1,0 +1,18 @@
+---
+- name: Deploy {{ nsg_name }} to {{ resource_group_name }} in {{ location }}
+  azure.azcollection.azure_rm_deployment:
+    state: present
+    deployment_mode: incremental
+    deployment_name: "{{ deployment_name }}"
+    resource_group_name: "{{ resource_group_name }}"
+    location: "{{ location }}"
+    template: "{{ lookup('file', 'nsg-deployment-template.json') }}"
+    parameters:
+      networkSecurityGroupName:
+        value: "{{ nsg_name }}"
+      opsSourceAddressPrefix:
+        value: "{{ ops_source_address_prefix }}"
+      location:
+        value: "{{ location }}"
+      resourceTags:
+        value: "{{ resource_tags }}"

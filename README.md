@@ -10,7 +10,7 @@ Ansible requires Python 3. You may run Ansible on Linux, macOS or WSL.
 
 To set up Ansible, run these commands in a terminal window:
 
-    pip3 install --user ansible pywinrm
+    pip3 install --user -r requirements-ansible.txt
     ansible-galaxy install -r requirements.yml
     pip3 install --user -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
@@ -48,11 +48,15 @@ Enter this command for documentation on dynamic inventory configuration files:
 
 To create an empty resource group:
 
-    ansible-playbook -i inventories/localhost ./apply_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./deploy_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
 To delete a resource group and all of the resources in it:
 
     ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+
+To deploy a Virtual Network:
+
+    ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/extra_vars/example_minimal_vnet.yml"
 
 To deploy an Azure Key Vault:
 
