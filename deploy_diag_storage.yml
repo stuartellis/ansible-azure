@@ -1,0 +1,24 @@
+---
+- name: Deploy Storage Account
+  hosts: localhost
+  vars_prompt:
+    - name: store_account_name
+      prompt: Name of the storage account
+      private: false
+    - name: store_account_type
+      prompt: Storage Account Type
+      private: false
+    - name: location
+      prompt: Location for the resources
+      private: false
+    - name: resource_group_name
+      prompt: Resource group for the resources
+      private: false
+  vars:
+    deployment_name: "{{ store_account_name }}-{{ location }}"
+    resource_tags:
+      environment: dev
+      phase: poc
+
+  roles:
+    - role: azure_diag_storage

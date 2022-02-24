@@ -1,0 +1,18 @@
+---
+- name: Deploy {{ store_account_name }} to {{ resource_group_name }} in {{ location }}
+  azure.azcollection.azure_rm_deployment:
+    state: present
+    deployment_mode: incremental
+    deployment_name: "{{ deployment_name }}"
+    resource_group_name: "{{ store_account_name }}"
+    location: "{{ location }}"
+    template: "{{ lookup('file', 'store-deployment-template.json') }}"
+    parameters:
+      storageAccountName:
+        value: "{{ store_account_name }}"
+      storageAccountType:
+        value: "{{ store_account_type }}"
+      location:
+        value: "{{ location }}"
+      resourceTags:
+        value: "{{ resource_tags }}"

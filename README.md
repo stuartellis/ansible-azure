@@ -54,9 +54,15 @@ To delete a resource group and all of the resources in it:
 
     ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
 
+## Resources for VMs
+
 To deploy a Virtual Network:
 
     ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/extra_vars/example_minimal_vnet.yml"
+
+To deploy a Storage Account for diagnostics:
+
+    ansible-playbook -i inventories/localhost ./deploy_diag_storage.yml --extra-vars "@examples/extra_vars/example_diag_storage.yml"
 
 To deploy an Azure Key Vault:
 

@@ -1,0 +1,4 @@
+location: uksouth
+resource_group_name: sandbox-hosts-0030-rg
+store_account_type: Standard_LRS
+store_account_name: sjestoresandbox0030
