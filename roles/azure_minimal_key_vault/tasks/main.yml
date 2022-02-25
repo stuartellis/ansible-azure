@@ -6,7 +6,7 @@
     deployment_name: "{{ deployment_name }}"
     resource_group_name: "{{ key_vault_rg_name }}"
     location: "{{ location }}"
-    template: "{{ lookup('file', 'deployment-template.json') }}"
+    template: "{{ lookup('file', 'keyvault-deployment-template.json') }}"
     parameters:
       certificatesPermissions:
         value: "{{ certificates_permissions }}"
