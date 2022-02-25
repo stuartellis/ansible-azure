@@ -14,7 +14,7 @@ To set up Ansible, run these commands in a terminal window:
 
 > Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools. For this reason, we install Ansible and the required Python modules to your home directory.
 
-To set up code checks, run *npm install*:
+To set up code checks for development, run *npm install*:
 
     npm install
 
