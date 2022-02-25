@@ -122,9 +122,17 @@ Use the playbook *deploy_arm_template.yml* to run any ARM template. This may be 
 
 ## Documentation
 
+### Ansible
+
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
 - [Ansible Collection for Azure](https://docs.ansible.com/ansible/latest/collections/azure/azcollection/)
+
+### ARM
+
 - [Azure Resource Manager templates](https://docs.microsoft.com/en-gb/azure/azure-resource-manager/templates/)
+
+### WinRM
+
 - [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
 - [How to Set up PSRemoting with WinRM and SSL](https://adamtheautomator.com/winrm-ssl/)
 - [Configure Powershell WinRM to use OpenSSL generated self-signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
