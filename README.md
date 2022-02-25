@@ -75,7 +75,7 @@ To create an empty resource group:
 
 To delete a resource group and all of the resources in it:
 
-    ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "resource_group_name=test-0030-rg location=uksouth"
 
 ## Deploying Other Azure Resources
 
