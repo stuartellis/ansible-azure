@@ -57,6 +57,14 @@ To run a playbook on the target computers, use *ansible-playbook* without *--che
 
     ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_updates.yml
 
+Use [--limit](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) to run playbooks on specific groups of computers:
+
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./apply_windows_updates.yml
+
+If Ansible fails on some computers, it creates a list of these computers as a *.retry* file. You can use *--limit* to run a playbook on the computers where Ansible failed:
+
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit @apply_windows_updates.retry ./apply_windows_updates.yml
+
 ## Deploying New Virtual Machines on Azure
 
 To deploy a new Windows VM:
