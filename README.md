@@ -111,15 +111,15 @@ This project also includes playbooks for deploying several types of resources on
 
 To deploy a Virtual Network:
 
-    ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/answers/example_minimal_vnet.yml"
+    ansible-playbook -i inventories/localhost ./deploy_minimal_vnet.yml --extra-vars "@examples/answers/minimal_vnet.yml"
 
 To deploy an Azure Key Vault:
 
-    ansible-playbook -i inventories/localhost ./deploy_minimal_key_vault.yml --extra-vars "@examples/answers/example_minimal_key_vault.yml"
+    ansible-playbook -i inventories/localhost ./deploy_minimal_key_vault.yml --extra-vars "@examples/answers/minimal_key_vault.yml"
 
 To deploy a Storage Account for VM diagnostics:
 
-    ansible-playbook -i inventories/localhost ./deploy_vm_diag_storage.yml --extra-vars "@examples/answers/example_vm_diag_storage.yml"
+    ansible-playbook -i inventories/localhost ./deploy_vm_diag_storage.yml --extra-vars "@examples/answers/vm_diag_storage.yml"
 
 ## Developing Ansible Code
 
