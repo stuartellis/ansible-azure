@@ -1,0 +1,17 @@
+admin_username: testadmin
+cert_country_name: GB
+enable_acc_net: false
+key_vault_name: test-key-vault-0100
+key_vault_rg_name: sandbox-hosts-0030-rg
+location: uksouth
+os_disk_size: 128
+os_disk_type: Premium_LRS
+os_version: 2019-datacenter-gensecond
+network_security_group_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-net-0020-rg/providers/Microsoft.Network/networkSecurityGroups/vnet-sandbox-0020-nsg-0010
+public_ip_address_type: Dynamic
+public_ip_address_sku: Basic
+storage_account_name: sjestoresandbox0030
+subnet_name: vnet-sandbox-0020-subnet-0010
+vm_resource_group_name: sandbox-hosts-0030-rg
+vm_size: Standard_B2s
+vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-net-0020-rg/providers/Microsoft.Network/virtualNetworks/vnet-sandbox-0020

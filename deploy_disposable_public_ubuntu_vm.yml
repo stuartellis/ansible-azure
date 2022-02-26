@@ -1,5 +1,5 @@
 ---
-- name: Deploy Disposable Windows VM
+- name: Deploy Disposable Ubuntu VM
   hosts: localhost
   vars_prompt:
     - name: vm_name
@@ -85,4 +85,4 @@
   roles:
     - role: local_winrm_server_cert_gen
     - role: key_vault_secret_file
-    - role: windows_disposable_public_vm
+    - role: ubuntu_disposable_public_vm
