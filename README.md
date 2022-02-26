@@ -89,7 +89,7 @@ If Ansible fails on some computers, it creates a list of these computers as a *.
 
 To deploy a new Windows VM:
 
-    ansible-playbook -i inventories/localhost ./deploy_public_windows_vm.yml --extra-vars "@examples/answers/example_windows_vm.yml"
+    ansible-playbook -i inventories/localhost ./deploy_disposable_public_win_vm.yml --extra-vars "@examples/answers/disposable_public_win_vm.yml"
 
 This playbook creates copies of the WinRM server certificates for new virtual machines in the *tmp/* directory of this project.
 
