@@ -69,21 +69,17 @@ Use playbooks to define a set of commands that execute on a group of computers. 
 - *apply_windows_devtools* installs and updates a collection of standard tools on Windows development machines
 - *apply_windows_updates.yml* runs Windows Update on all target computers
 
-To test Ansible access to all Windows VMs on Azure, use the *ping_azure_windows* playbook:
-
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_azure_windows.yml
-
 To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 
     ansible-playbook --ask-pass --user testadmin --check -i inventories/azure_rm.yml ./apply_windows_updates.yml
 
 To run a playbook on the target computers, use *ansible-playbook* without *--check*:
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_updates.yml
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_azure_windows.yml
 
 Use the [--limit option](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) to change which computers a playbook runs on:
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./apply_windows_updates.yml
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./ping_azure_windows.yml
 
 If Ansible fails on some computers, it creates a list of these computers as a *.retry* file. You can use *--limit* to run a playbook on the computers where Ansible failed:
 
