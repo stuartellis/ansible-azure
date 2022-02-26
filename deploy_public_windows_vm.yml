@@ -26,6 +26,9 @@
     - name: os_disk_type
       prompt: OS Disk storage type
       private: false
+    - name: os_disk_size
+      prompt: OS Disk capacity
+      private: false
     - name: os_version
       prompt: The Windows version for the VM
       private: false
@@ -67,7 +70,6 @@
     network_interface_name: "{{ vm_name }}-nic0"
     nic_delete_option: Delete
     output_dir: tmp
-    os_disk_size: 127
     os_disk_delete_option: Delete
     patch_mode: AutomaticByOS
     pip_delete_option: Delete
