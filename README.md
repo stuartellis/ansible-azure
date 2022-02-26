@@ -2,11 +2,11 @@
 
 This project enables [Ansible](https://www.ansible.com/) on Azure.
 
-Ansible can run on any computer or group of computers that it finds, provided that WinRM or SSH are enabled on those computers. This project includes a dynamic inventory which finds the virtual machines on Azure, and defines groups of computers by location and tags.
+Ansible can run on any computer or group of computers that it finds, provided that WinRM or SSH are enabled on those computers. This project includes a dynamic inventory for Ansible which automatically groups virtual machines on Azure by location and tags.
 
 ## Setting Up
 
-Ansible requires Python 3. You may run Ansible on Linux, macOS or WSL.
+You may run Ansible on Linux, macOS or WSL. Ansible requires Python 3.
 
 To set up Ansible, run these commands in a terminal window:
 
@@ -16,7 +16,7 @@ To set up Ansible, run these commands in a terminal window:
 
 > Ensure that the *bin* directory for Python is on your PATH. On macOS, this is *$HOME/Library/Python/3.9/bin*.
 
-Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools. For this reason, we install Ansible and the required Python modules to your home directory.
+Some Microsoft tasks for Ansible are currently not compatible with pipx and other Python environment isolation tools. For this reason, these commands install Ansible and the required Python modules to your home directory.
 
 To set up code checks for development, run *npm install*:
 
@@ -43,9 +43,9 @@ To list the available Virtual Machines:
 
 ## Running a Command on Remote Computers
 
-You can run any [Ansible task for Windows](https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html#plugins-in-ansible-windows). For example, *win_command* runs a commmand on the computer, and *win_copy* copies files.
+Ansible provides [specific modules for Windows](https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html#plugins-in-ansible-windows). For example, *win_command* runs a command on Windows computers, and *win_copy* copies files from your systems to Windows computers.
 
-To run an Ansible task on a computer, use the name of the computer. This command specifies the computer *example-vm-0001*:
+To run an Ansible task on one computer, use the name of the computer. This command specifies the computer *example-vm-0001*:
 
     ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m win_copy -a "src=example.txt dest=C:\Temp"
 
@@ -57,17 +57,21 @@ To get information about computers, use *setup*:
 
     ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m setup
 
-To check whether Ansible can access Windows computers, use *win_ping*:
+To check whether Ansible can access Windows computers without making any changes, use *win_ping*:
 
     ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m win_ping
 
 ## Running Playbooks on Remote Computers
 
-Use playbooks to define a set of commands. This project includes several playbooks. Each playbook has a default set of targets. *ping_windows* checks that Ansible can connect to all Windows computers, *apply_windows_devtools* to install and update a collection of standard developer tools on the target Windows computers, and the playbook *apply_windows_updates.yml* to run Windows Update on target computers.
+Use playbooks to define a set of commands that execute on a group of computers. This project includes several playbooks.
 
-To test Ansible access to Windows VMs on Azure, use the *ping_windows* playbook:
+- *ping_azure_windows* checks that Ansible can connect to all available Windows computers on Azure
+- *apply_windows_devtools* installs and updates a collection of standard tools on Windows development machines
+- *apply_windows_updates.yml* runs Windows Update on all target computers
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_windows.yml
+To test Ansible access to all Windows VMs on Azure, use the *ping_azure_windows* playbook:
+
+    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_azure_windows.yml
 
 To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 
@@ -77,7 +81,7 @@ To run a playbook on the target computers, use *ansible-playbook* without *--che
 
     ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./apply_windows_updates.yml
 
-Use [--limit](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) to run playbooks on specific groups of computers:
+Use the [--limit option](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) to change which computers a playbook runs on:
 
     ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./apply_windows_updates.yml
 
@@ -125,20 +129,12 @@ To deploy a Storage Account for VM diagnostics:
 
 ### Tools
 
-Install [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) and [the Visual Studio Code extension for Ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible).
+Install [Ansible Lint](https://ansible-lint.readthedocs.io/en/latest/usage.html) and [the Visual Studio Code extension for Ansible](https://marketplace.visualstudio.com/items?itemName=redhat.ansible). The Visual Studio Code extension automatically checks roles and playbooks with Ansible Lint.
 
 To install Ansible Lint, run these commands in a terminal window:
 
     pipx install ansible-lint
     pipx inject ansible-lint ansible-core yamllint
-
-To check the roles with Ansible Lint:
-
-    ansible-lint roles/
-
-Always use *syntax-check* to validate a new playbook before you run it:
-
-    ansible-playbook --syntax-check deploy_resource_group.yml
 
 ### Examples
 
@@ -146,7 +142,7 @@ This project includes examples of using Ansible to deploy ARM templates and run 
 
 ### Running New ARM Templates
 
-Use the playbook *deploy_arm_template.yml* to run any ARM template. This may be useful to test ARM templates as you develop roles and playbooks.
+Use the playbooks *create_resource_group.yml* and *delete_resource_group.yml* to create and delete resource groups for testing. You can then use the playbook *deploy_arm_template.yml* to deploy any ARM template into your resource groups.
 
 ## Documentation
 

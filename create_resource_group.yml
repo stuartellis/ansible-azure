@@ -1,5 +1,5 @@
 ---
-- name: Azure Resource Group
+- name: Create an Empty Azure Resource Group
   hosts: localhost
   vars_prompt:
     - name: group_name
