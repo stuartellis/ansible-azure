@@ -2,11 +2,11 @@
 
 This project enables [Ansible](https://www.ansible.com/) on Azure.
 
-Ansible can run on any computer or group of computers that it finds, provided that WinRM or SSH are enabled on those computers. This project includes a dynamic inventory for Ansible which automatically groups virtual machines on Azure by location and tags.
+Ansible can run on any computer or group of computers that it finds, provided that WinRM or SSH are enabled on those computers. This project includes a dynamic inventory for Ansible, which automatically groups virtual machines on Azure by location and tags.
 
 ## Setting Up
 
-You may run Ansible on Linux, macOS or WSL. Ansible requires Python 3.
+You may run Ansible on Linux or macOS, or in WSL. Ansible requires Python 3.
 
 To set up Ansible, run these commands in a terminal window:
 
