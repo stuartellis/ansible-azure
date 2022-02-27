@@ -1,0 +1,21 @@
+---
+- name: Create output directory
+  ansible.builtin.file:
+    mode: 0700
+    path: "{{ output_dir }}/{{ computer_name }}"
+    state: directory
+  register: working_dir
+
+- name: Create SSH keypair
+  delegate_to: localhost
+  ansible.builtin.command:
+    chdir: "{{ working_dir.path }}"
+    cmd: |
+      ssh-keygen -t rsa -b 4096 -C "{{ admin_username }}@{{ computer_name }}" -f ./{{ admin_username }}-{{ computer_name }} -N {{ ssh_passwd }}
+    creates: "{{ admin_username }}-{{ computer_name }}"
+  args:
+    warn: false
+  register: ssh_key_gen_result
+
+- name: Set SSH public key as a fact
+  ansible.builtin.set_fact: ssh_public_key="{{ lookup('file', '{{ working_dir.path }}/{{ admin_username }}-{{ computer_name }}.pub') }}"

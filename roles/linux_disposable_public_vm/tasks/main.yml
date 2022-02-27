@@ -1,13 +1,4 @@
 ---
-- name: Get Key Vault by name
-  azure_rm_keyvault_info:
-    resource_group: "{{ key_vault_rg_name }}"
-    name: "{{ key_vault_name }}"
-  register: keyvault
-
-- name: Get Key Vault ID
-  set_fact: winrm_vault_id="{{ keyvault['keyvaults'][0]['id'] }}"
-
 - name: Deploy {{ vm_name }} to {{ vm_resource_group_name }} in {{ location }}
   azure.azcollection.azure_rm_deployment:
     state: present
@@ -17,16 +8,16 @@
     location: "{{ location }}"
     template: "{{ lookup('file', 'vm-deployment-template.json') }}"
     parameters:
-      adminPassword:
-        value: "{{ admin_password }}"
       adminUsername:
         value: "{{ admin_username }}"
+      adminPublicKey:
+        value: "{{ ssh_public_key }}"
       diagnosticsStorageAccountName:
         value: "{{ storage_account_name }}"
       enableAcceleratedNetworking:
         value: "{{ enable_acc_net }}"
-      enableHotpatching:
-        value: "{{ enable_hot_patching }}"
+      imageReference:
+        value: "{{ image_reference }}"
       location:
         value: "{{ location }}"
       networkInterfaceName:
@@ -41,8 +32,6 @@
         value: "{{ os_disk_size }}"
       osDiskType:
         value: "{{ os_disk_type }}"
-      osVersion:
-        value: "{{ os_version }}"
       patchMode:
         value: "{{ patch_mode }}"
       pipDeleteOption:
@@ -65,9 +54,3 @@
         value: "{{ vm_size }}"
       virtualNetworkId:
         value: "{{ vnet_id }}"
-      winrmCertSecretUrl:
-        value: "{{ secret_url }}"
-      winrmCertStoreName:
-        value: "{{ winrm_cert_store_name }}"
-      winrmVaultId:
-        value: "{{ winrm_vault_id }}"

@@ -2,11 +2,11 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "adminUsername": {
+        "adminPublicKey": {
             "type": "String"
         },
-        "adminPassword": {
-            "type": "SecureString"
+        "adminUsername": {
+            "type": "String"
         },
         "diagnosticsStorageAccountName": {
             "type": "String"
@@ -14,8 +14,8 @@
         "enableAcceleratedNetworking": {
             "type": "Bool"
         },
-        "enableHotpatching": {
-            "type": "Bool"
+        "imageReference": {
+            "type": "object"
         },
         "location": {
             "type": "String"
@@ -27,9 +27,6 @@
             "type": "String"
         },
         "nicDeleteOption": {
-            "type": "String"
-        },
-        "osVersion": {
             "type": "String"
         },
         "osDiskSize": {
@@ -73,15 +70,6 @@
             "type": "String"
         },
         "virtualNetworkId": {
-            "type": "String"
-        },
-        "winrmCertStoreName": {
-            "type": "String"
-        },
-        "winrmCertSecretUrl": {
-            "type": "String"
-        },
-        "winrmVaultId": {
             "type": "String"
         }
     },
@@ -163,12 +151,7 @@
                         },
                         "deleteOption": "[parameters('osDiskDeleteOption')]"
                     },
-                    "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "[parameters('osVersion')]",
-                        "version": "latest"
-                    }
+                    "imageReference": "[parameters('imageReference')]"
                 },
                 "networkProfile": {
                     "networkInterfaces": [
@@ -183,81 +166,22 @@
                 "osProfile": {
                     "computerName": "[parameters('virtualMachineComputerName')]",
                     "adminUsername": "[parameters('adminUsername')]",
-                    "adminPassword": "[parameters('adminPassword')]",
-                    "windowsConfiguration": {
-                        "enableAutomaticUpdates": true,
-                        "provisionVmAgent": true,
-                        "patchSettings": {
-                            "enableHotpatching": "[parameters('enableHotpatching')]",
-                            "patchMode": "[parameters('patchMode')]"
-                        },
-                        "winRM": {
-                            "listeners": [
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": true,
+                        "ssh": {
+                            "publicKeys": [
                                 {
-                                    "protocol": "http"
-                                },
-                                {
-                                    "protocol": "https",
-                                    "certificateUrl": "[parameters('winrmCertSecretUrl')]"
+                                    "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
+                                    "keyData": "[parameters('adminPublicKey')]"
                                 }
                             ]
                         }
-                    },
-                    "secrets": [
-                        {
-                            "sourceVault": {
-                                "id": "[parameters('winrmVaultId')]"
-                            },
-                            "vaultCertificates": [
-                                {
-                                    "certificateUrl": "[parameters('winrmCertSecretUrl')]",
-                                    "certificateStore": "[parameters('winrmCertStoreName')]"
-                                }
-                            ]
-                        }
-                    ]
+                    }
                 },
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
                         "storageUri": "[concat('https://', parameters('diagnosticsStorageAccountName'), '.blob.core.windows.net/')]"
-                    }
-                }
-            }
-        },
-        {
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
-            "name": "microsoft.antimalware-windows",
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('virtualMachineName'))]"
-            ],
-            "properties": {
-                "mode": "incremental",
-                "templateLink": {
-                    "uri": "https://catalogartifact.azureedge.net/publicartifactsmigration/microsoft.antimalware-windows-arm.1.0.2/Artifacts/MainTemplate.json"
-                },
-                "parameters": {
-                    "RealtimeProtectionEnabled": {
-                        "value": "true"
-                    },
-                    "ScheduledScanSettingsIsEnabled": {
-                        "value": "false"
-                    },
-                    "ScheduledScanSettingsScanType": {
-                        "value": "Quick"
-                    },
-                    "ScheduledScanSettingsDay": {
-                        "value": "7"
-                    },
-                    "ScheduledScanSettingsTime": {
-                        "value": "120"
-                    },
-                    "vmName": {
-                        "value": "[parameters('virtualMachineName')]"
-                    },
-                    "location": {
-                        "value": "[parameters('location')]"
                     }
                 }
             }
