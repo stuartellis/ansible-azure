@@ -93,6 +93,10 @@ To deploy a new Windows VM:
 
 This playbook creates copies of the WinRM server certificates for new virtual machines in the *tmp/* directory of this project.
 
+To deploy a new Linux VM:
+
+    ansible-playbook -i inventories/localhost ./deploy_disposable_public_ubuntu_vm.yml --extra-vars "@examples/answers/disposable_public_ubuntu_vm.yml"
+
 ## Working with Azure Resource Groups
 
 > We use the *localhost* inventory to run commands on Azure itself.
