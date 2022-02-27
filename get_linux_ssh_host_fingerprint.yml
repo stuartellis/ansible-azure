@@ -1,0 +1,22 @@
+---
+- name: Get the SSH Host Fingerprint of a Linux VM
+  hosts: localhost
+  vars_prompt:
+    - name: group_name
+      prompt: The resource group for the VM
+      private: false
+    - name: vm_name
+      prompt: The name of the VM
+      private: false
+  vars:
+    remote_cmd: ssh-keygen -lf /etc/ssh/ssh_host_ecdsa_key.pub
+    az_cli_cmd: "az vm run-command invoke -g {{ group_name }} -o json -n {{ vm_name }} --command-id RunShellScript --scripts '{{ remote_cmd }}'"
+  tasks:
+    - name: Query {{ vm_name }} for SSH host fingerprint
+      delegate_to: localhost
+      ansible.builtin.command:
+        cmd: "{{ az_cli_cmd }}"
+      register: cmd_output
+    - name: Show SSH host fingerprint for {{ vm_name }} in {{ group_name }}
+      ansible.builtin.debug:
+        msg: "{{ cmd_output.stdout }}"
