@@ -13,8 +13,6 @@
     cmd: |
       ssh-keygen -t rsa -b 4096 -C "{{ admin_username }}@{{ computer_name }}" -f ./{{ admin_username }}-{{ computer_name }} -N {{ ssh_passwd }}
     creates: "{{ admin_username }}-{{ computer_name }}"
-  args:
-    warn: false
   register: ssh_key_gen_result
 
 - name: Set SSH public key as a fact
