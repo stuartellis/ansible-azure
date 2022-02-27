@@ -4,6 +4,7 @@ plugin: azure_rm
 auth_source: auto
 plain_host_names: yes
 conditional_groups:
+  ubuntu: "'0001-com-ubuntu-server' in image.offer"
   windows: "'WindowsServer' in image.offer"
 keyed_groups:
   # places each host in a group named 'tag_(tag name)_(tag value)' for each tag on a VM.
