@@ -142,18 +142,12 @@ Use the playbooks *create_resource_group.yml* and *delete_resource_group.yml* to
 
 ## Documentation
 
-## Windows
+## Ansible with Windows
 
-- [Ansible Tasks for Windows](https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html#plugins-in-ansible-windows)
+- [Ansible Collection for Windows](https://docs.ansible.com/ansible/latest/collections/ansible/windows/index.html#plugins-in-ansible-windows)
 - [Using Ansible with Windows](https://docs.ansible.com/ansible/latest/user_guide/windows.html)
 
-### WinRM
-
-- [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
-- [How to Set up PSRemoting with WinRM and SSL](https://adamtheautomator.com/winrm-ssl/)
-- [Configure Powershell WinRM to use OpenSSL generated self-signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
-
-### Azure
+### Ansible with Azure
 
 - [Azure Documentation for Ansible](https://docs.microsoft.com/en-us/azure/developer/ansible/)
 - [Ansible Collection for Azure](https://docs.ansible.com/ansible/latest/collections/azure/azcollection/)
@@ -161,3 +155,13 @@ Use the playbooks *create_resource_group.yml* and *delete_resource_group.yml* to
 ### Azure Resource Manager (ARM)
 
 - [Azure Resource Manager templates](https://docs.microsoft.com/en-gb/azure/azure-resource-manager/templates/)
+
+### Linux with Azure
+
+- [Access to Linux VMs with Key Vault](https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.68.manage.access.to.linux.vms.using.key.vault.part.1.md)
+
+### WinRM
+
+- [Set up WinRM access for an Azure VM](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/winrm)
+- [How to Set up PSRemoting with WinRM and SSL](https://adamtheautomator.com/winrm-ssl/)
+- [Configure Powershell WinRM to use OpenSSL generated self-signed certificate](http://vcloud-lab.com/entries/powershell/configure-powershell-winrm-to-use-openssl-generated-self-signed-certificate)
