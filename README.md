@@ -138,7 +138,7 @@ To install Ansible Lint, run these commands in a terminal window:
 
 ### Examples
 
-This project includes examples of using Ansible to deploy ARM templates and run the Azure CLI. See the role *key_vault_secret* for an example of running the Azure CLI in an Ansible task.
+This project includes examples of using Ansible to deploy ARM templates and run the Azure CLI. The roles used by the *deploy_* playbooks provide examples of how to deploy ARM templates. The role *key_vault_secret* provides an example of running the Azure CLI in an Ansible task.
 
 ### Running New ARM Templates
 
