@@ -84,5 +84,5 @@
 
   roles:
     - role: local_winrm_server_cert_gen
-    - role: key_vault_secret_file
+    - role: azure_key_vault_secret_file
     - role: windows_disposable_public_vm
