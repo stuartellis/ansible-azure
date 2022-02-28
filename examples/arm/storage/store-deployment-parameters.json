@@ -1,0 +1,17 @@
+{
+    "storageAccountType": {
+        "value": "Standard_LRS"
+    },
+    "location": {
+        "value": "uksouth"
+    },
+    "storageAccountName": {
+        "value": "sjeexamplestore0010"
+    },
+    "resourceTags": {
+        "value": {
+            "environment": "dev",
+            "phase": "poc"
+        }
+    }
+}

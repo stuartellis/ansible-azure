@@ -144,6 +144,8 @@ This project includes examples of using Ansible to deploy ARM templates and run 
 
 Use the playbooks *create_resource_group.yml* and *delete_resource_group.yml* to create and delete resource groups for testing. You can then use the playbook *deploy_arm_template.yml* to deploy any ARM template into your resource groups.
 
+        ansible-playbook -i inventories/localhost ./deploy_arm_template.yml --extra-vars "template_file_path=examples/arm/storage/store-deployment-template.json parameters_file_path=examples/arm/storage/store-deployment-parameters.json deployment_name=example-0010 resource_group_name=sandbox-hosts-0030-rg location=uksouth"
+
 ## Documentation
 
 ## Ansible with Windows
