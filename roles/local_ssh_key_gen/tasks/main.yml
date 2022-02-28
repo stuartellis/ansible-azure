@@ -11,7 +11,7 @@
   ansible.builtin.command:
     chdir: "{{ working_dir.path }}"
     cmd: |
-      ssh-keygen -t rsa -b 4096 -C "{{ admin_username }}@{{ computer_name }}" -f ./{{ admin_username }}-{{ computer_name }} -N {{ ssh_passwd }}
+      ssh-keygen -t rsa -b 4096 -C "{{ admin_username }}@{{ computer_name }}" -f ./{{ admin_username }}-{{ computer_name }} -N {{ ssh_password }}
     creates: "{{ admin_username }}-{{ computer_name }}"
   register: ssh_key_gen_result
 

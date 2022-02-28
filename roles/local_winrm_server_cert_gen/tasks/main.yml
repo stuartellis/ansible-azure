@@ -32,7 +32,7 @@
       openssl pkcs12 -export
        -out {{ computer_name }}-complete.pfx
         -inkey {{ computer_name }}-key.pem -in {{ computer_name }}-cert.pem
-         -passout pass:{{ pfx_passwd }}
+         -passout pass:{{ pfx_password }}
     creates: "{{ computer_name }}-complete.pfx"
 
 - name: Generate JSON for Key Vault from PFX
@@ -49,4 +49,4 @@
   ansible.builtin.copy:
     content: "{{ lookup('file', '{{ working_dir.path }}/{{ computer_name }}-secret.json') | b64encode }}"
     mode: 0600
-    dest: "{{ working_dir.path }}/{{ computer_name }}-secret-b64.txt"
+    dest: "{{ working_dir.path }}/{{ computer_name }}-secret-base64.txt"

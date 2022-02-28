@@ -11,7 +11,7 @@
     - name: admin_password
       prompt: The admin password for the Virtual Machine
       private: true
-    - name: pfx_passwd
+    - name: pfx_password
       prompt: Password for the certificates PFX file
       private: true
     - name: enable_acc_net
@@ -77,8 +77,7 @@
     resource_tags:
       environment: dev
       phase: poc
-    secret_encoding: base64
-    secret_file: "{{ computer_name }}-secret-b64.txt"
+    secret_file: "{{ computer_name }}-secret-base64.txt"
     secret_name: "{{ computer_name }}-winrm"
     winrm_cert_store_name: "My"
 

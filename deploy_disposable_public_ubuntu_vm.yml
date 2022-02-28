@@ -8,7 +8,7 @@
     - name: admin_username
       prompt: The admin username for the Virtual Machine
       private: false
-    - name: ssh_passwd
+    - name: ssh_password
       prompt: Password for the SSH private key
       private: true
     - name: enable_acc_net

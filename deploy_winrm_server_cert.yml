@@ -17,14 +17,13 @@
     - name: key_vault_rg_name
       prompt: Resource Group containing the Key Vault
       private: false
-    - name: pfx_passwd
+    - name: pfx_password
       prompt: Password for the certificates PFX file
       private: true
   vars:
     computer_fqdn_name: "{{ computer_name }}.{{ dns_domain }}"
     output_dir: tmp
-    secret_encoding: base64
-    secret_file: "{{ computer_name }}-secret-b64.txt"
+    secret_file: "{{ computer_name }}-secret-base64.txt"
     secret_name: "{{ computer_name }}-winrm"
   roles:
     - role: local_winrm_server_cert_gen
