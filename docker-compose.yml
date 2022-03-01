@@ -28,9 +28,5 @@ services:
       SEMAPHORE_ADMIN_EMAIL: admin@localhost
       SEMAPHORE_ADMIN: admin
       SEMAPHORE_ACCESS_KEY_ENCRYPTION: gs72mPntFATGJs9qK0pQ0rKtfidlexiMjYCH9gWKhTU=
-      AZURE_SUBSCRIPTION_ID: 5874c492-e72b-4398-9e49-d2b53206acc3
-      AZURE_CLIENT_ID: a65259a2-1f82-4236-a848-ddc6ceb4bca2
-      AZURE_SECRET: J4Y7Q~4t4Ik-U5XXq8hvFjkTqow~4GJm82hQc
-      AZURE_TENANT: 29ff1683-0032-4825-883a-a68017a0ae66
     depends_on:
       - mysql
