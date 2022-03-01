@@ -4,6 +4,7 @@ exclude_paths:
   - inventories/
   - tmp/
   - ansible-lint
+  - docker-compose.yml
 offline: true
 skip_list:
   - no-changed-when
