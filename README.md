@@ -11,7 +11,7 @@ You may run Ansible on Linux or macOS, or in WSL. Ansible requires Python 3.
 To set up Ansible, run these commands in a terminal window:
 
     pip3 install --user -r requirements-ansible.txt
-    ansible-galaxy install -r requirements.yml
+    ansible-galaxy install -r roles/requirements.yml
     pip3 install --user -r $HOME/.ansible/collections/ansible_collections/azure/azcollection/requirements-azure.txt
 
 > Ensure that the *bin* directory for Python is on your PATH. On macOS, this is *$HOME/Library/Python/3.9/bin*.
