@@ -1,5 +1,0 @@
----
-- hosts: ubuntu
-  tasks:
-    - name: Test connection
-      ansible.builtin.ping:
