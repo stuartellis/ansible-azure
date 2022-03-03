@@ -1,0 +1,16 @@
+---
+admin_username: testadmin
+cert_country_name: GB
+enable_acc_net: false
+enable_hot_patching: false
+nic_delete_option: Delete
+os_disk_delete_option: Delete
+os_disk_size: 128
+os_disk_type: Premium_LRS
+os_version: 2019-datacenter-gensecond
+patch_mode: AutomaticByOS
+pip_delete_option: Delete
+public_ip_address_type: Dynamic
+public_ip_address_sku: Basic
+vm_size: Standard_B2s
+winrm_cert_store_name: "My"

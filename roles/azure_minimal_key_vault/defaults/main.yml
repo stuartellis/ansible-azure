@@ -1,0 +1,5 @@
+---
+vault_sku: standard
+certificates_permissions: ["all"]
+keys_permissions: ["all"]
+secrets_permissions: ["all"]

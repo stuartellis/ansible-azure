@@ -1,0 +1,17 @@
+---
+admin_username: testadmin
+enable_acc_net: false
+image_reference:
+  publisher: canonical
+  offer: 0001-com-ubuntu-server-focal
+  sku: 20_04-lts-gen2
+  version: latest
+nic_delete_option: Delete
+os_disk_delete_option: Delete
+patch_mode: AutomaticByOS
+pip_delete_option: Delete
+os_disk_size: 48
+os_disk_type: Premium_LRS
+public_ip_address_type: Dynamic
+public_ip_address_sku: Basic
+vm_size: Standard_B1ls
