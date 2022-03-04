@@ -47,19 +47,19 @@ Ansible provides [specific modules for Windows](https://docs.ansible.com/ansible
 
 To run an Ansible task on one computer, use the name of the computer. This command specifies the computer *example-vm-0001*:
 
-    ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m win_copy -a "src=example.txt dest=C:\Temp"
+    ansible example-vm-0001 --ask-pass --user vmadmin -i inventories/azure_rm.yml -m win_copy -a "src=example.txt dest=C:\Temp"
 
 To run an Ansible task on a group of computers, specify the group. This command specifies the group *tag_environment_dev*:
 
-    ansible tag_environment_dev --ask-pass --user testadmin -i inventories/azure_rm.yml -m win_copy -a "src=example.txt dest=C:\Temp"
+    ansible tag_environment_dev --ask-pass --user vmadmin -i inventories/azure_rm.yml -m win_copy -a "src=example.txt dest=C:\Temp"
 
 To get information about computers, use *setup*:
 
-    ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m setup
+    ansible example-vm-0001 --ask-pass --user vmadmin -i inventories/azure_rm.yml -m setup
 
 To check whether Ansible can access Windows computers without making any changes, use *win_ping*:
 
-    ansible example-vm-0001 --ask-pass --user testadmin -i inventories/azure_rm.yml -m win_ping
+    ansible example-vm-0001 --ask-pass --user vmadmin -i inventories/azure_rm.yml -m win_ping
 
 ## Running Playbooks on Remote Computers
 
@@ -71,19 +71,19 @@ Use playbooks to define a set of commands that execute on a group of computers. 
 
 To carry out a dry-run of a playbook, use *--check* to enable *check mode*:
 
-    ansible-playbook --ask-pass --user testadmin --check -i inventories/azure_rm.yml ./apply_windows_updates.yml
+    ansible-playbook --ask-pass --user vmadmin --check -i inventories/azure_rm.yml ./apply_windows_updates.yml
 
 To run a playbook on the target computers, use *ansible-playbook* without *--check*:
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml ./ping_azure_windows.yml
+    ansible-playbook --ask-pass --user vmadmin -i inventories/azure_rm.yml ./ping_azure_windows.yml
 
 Use the [--limit option](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#patterns-and-ansible-playbook-flags) to change which computers a playbook runs on:
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./ping_azure_windows.yml
+    ansible-playbook --ask-pass --user vmadmin -i inventories/azure_rm.yml --limit tag_environment_dev ./ping_azure_windows.yml
 
 If Ansible fails on some computers, it creates a list of these computers as a *.retry* file. You can use *--limit* to run a playbook on the computers where Ansible failed:
 
-    ansible-playbook --ask-pass --user testadmin -i inventories/azure_rm.yml --limit @apply_windows_updates.retry ./apply_windows_updates.yml
+    ansible-playbook --ask-pass --user vmadmin -i inventories/azure_rm.yml --limit @apply_windows_updates.retry ./apply_windows_updates.yml
 
 ## Deploying New Virtual Machines on Azure
 
@@ -103,11 +103,11 @@ To deploy a new Linux VM:
 
 To create an empty resource group:
 
-    ansible-playbook -i inventories/localhost ./deploy_resource_group.yml --extra-vars "group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./create_resource_group.yml --extra-vars "group_name=sandbox-hosts-0040-rg location=uksouth"
 
 To delete a resource group and all of the resources in it:
 
-    ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "resource_group_name=test-0030-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./delete_resource_group.yml --extra-vars "resource_group_name=sandbox-hosts-0040-rg location=uksouth"
 
 ## Deploying Other Azure Resources
 
@@ -144,7 +144,7 @@ This project includes examples of using Ansible to deploy ARM templates and run 
 
 Use the playbooks *create_resource_group.yml* and *delete_resource_group.yml* to create and delete resource groups for testing. You can then use the playbook *deploy_arm_template.yml* to deploy any ARM template into your resource groups.
 
-        ansible-playbook -i inventories/localhost ./deploy_arm_template.yml --extra-vars "template_file_path=examples/arm/storage/store-deployment-template.json parameters_file_path=examples/arm/storage/store-deployment-parameters.json deployment_name=example-0010 resource_group_name=sandbox-hosts-0030-rg location=uksouth"
+        ansible-playbook -i inventories/localhost ./deploy_arm_template.yml --extra-vars "template_file_path=examples/arm/storage/store-deployment-template.json parameters_file_path=examples/arm/storage/store-deployment-parameters.json deployment_name=example-0010 resource_group_name=sandbox-hosts-0040-rg location=uksouth"
 
 ## Documentation
 

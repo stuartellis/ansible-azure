@@ -1,5 +1,5 @@
 ---
-admin_username: testadmin
+admin_username: vmadmin
 enable_acc_net: false
 image_reference:
   publisher: canonical
