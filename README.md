@@ -103,7 +103,11 @@ To deploy a new Linux VM:
 
 To create an empty resource group:
 
-    ansible-playbook -i inventories/localhost ./create_resource_group.yml --extra-vars "group_name=example-hosts-0040-rg location=uksouth"
+    ansible-playbook -i inventories/localhost ./create_resource_group.yml --extra-vars "resource_group_name=example-hosts-0040-rg location=uksouth"
+
+To create a resource group with resources for testing and prototyping:
+
+    ansible-playbook -i inventories/localhost ./deploy_lab_resource_group.yml --extra-vars "@examples/answers/lab_resource_group.yml"
 
 To delete a resource group and all of the resources in it:
 

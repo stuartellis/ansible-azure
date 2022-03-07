@@ -1,0 +1,55 @@
+---
+- name: Deploy Resource Group for Testing
+  hosts: localhost
+  vars_prompt:
+    - name: resource_prefix
+      prompt: Prefix for resources
+      private: false
+    - name: operators_id
+      prompt: Active Directory ID for operators group
+      private: false
+    - name: ops_source_address_prefix
+      prompt: Operations IP address prefix
+      private: false
+    - name: location
+      prompt: Location for the resources
+      private: false
+
+  vars:
+    resource_group_name: "{{ resource_prefix }}-rg"
+    vnet_name: "{{ resource_prefix }}-vnet-0010"
+    nsg_name: "{{ resource_prefix }}-nsg-0010"
+    subnet_1_prefix: "10.0.0.0/24"
+    subnet_1_name: "{{ vnet_name }}-subnet-0010"
+    subnet_2_prefix: "10.0.1.0/24"
+    subnet_2_name: "{{ vnet_name }}-subnet-0020"
+    vnet_address_prefix: "10.0.0.0/16"
+    key_vault_name: "{{ resource_prefix }}-keyvault-0010"
+    certificates_permissions: ["all"]
+    keys_permissions: ["all"]
+    secrets_permissions: ["all"]
+    vault_sku: standard
+    store_account_name: "{{ resource_prefix }}diag0010"
+    store_account_type: Standard_LRS
+    resource_tags:
+      environment: labs
+      phase: example
+      source: ansible-azure
+
+  roles:
+    - role: azure_resource_group
+      vars:
+        deployment_name: "{{ resource_group_name }}-{{ location }}"
+    - role: azure_minimal_nsg
+      vars:
+        deployment_name: "{{ nsg_name }}-{{ location }}"
+    - role: azure_minimal_vnet
+      vars:
+        deployment_name: "{{ vnet_name }}-{{ location }}"
+    - role: azure_minimal_key_vault
+      vars:
+        deployment_name: "{{ key_vault_name }}-{{ location }}"
+        key_vault_rg_name: "{{ resource_group_name }}"
+    - role: azure_diag_storage
+      vars:
+        deployment_name: "{{ store_account_name }}-{{ location }}"

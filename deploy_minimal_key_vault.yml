@@ -32,6 +32,7 @@
     resource_tags:
       environment: example
       phase: example
+      source: ansible-azure
 
   roles:
     - role: azure_minimal_key_vault

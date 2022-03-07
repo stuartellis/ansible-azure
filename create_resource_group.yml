@@ -2,7 +2,7 @@
 - name: Create an Empty Azure Resource Group
   hosts: localhost
   vars_prompt:
-    - name: group_name
+    - name: resource_group_name
       prompt: Specify the name for the resource group
       private: false
     - name: location
@@ -10,7 +10,6 @@
       private: false
   vars:
     group_tags:
-      - key: source
-        value: ansible
+      source: ansible-azure
   roles:
     - role: azure_resource_group

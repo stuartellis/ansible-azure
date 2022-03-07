@@ -1,0 +1,4 @@
+location: uksouth
+operators_id: eed52df9-8e49-43f9-89a8-7e5c0c64abf4
+ops_source_address_prefix: "*"
+resource_prefix: test01

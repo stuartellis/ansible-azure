@@ -74,6 +74,7 @@
     resource_tags:
       environment: example
       phase: example
+      source: ansible-azure
     secret_file: "{{ admin_username }}-{{ computer_name }}.pub"
     secret_name: "{{ admin_username }}-{{ computer_name }}-ssh-public-key"
 
