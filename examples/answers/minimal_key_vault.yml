@@ -1,6 +1,6 @@
 location: uksouth
 key_vault_name: test-key-vault-0200
-key_vault_rg_name: sandbox-hosts-0040-rg
+key_vault_rg_name: example-hosts-0040-rg
 operators_id: eed52df9-8e49-43f9-89a8-7e5c0c64abf4
 vault_sku: standard
 certificates_permissions: ["all"]

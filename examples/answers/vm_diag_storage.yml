@@ -1,4 +1,4 @@
 location: uksouth
-resource_group_name: sandbox-hosts-0040-rg
+resource_group_name: example-hosts-0040-rg
 store_account_type: Standard_LRS
-store_account_name: sjestoresandbox0030
+store_account_name: sjestoreexample0030

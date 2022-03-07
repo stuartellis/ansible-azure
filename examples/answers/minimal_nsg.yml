@@ -1,4 +1,4 @@
 location: uksouth
-nsg_name: nsg-sandbox-0020
+nsg_name: nsg-example-0020
 ops_source_address_prefix: "*"
-resource_group_name: sandbox-net-0040-rg
+resource_group_name: example-net-0040-rg

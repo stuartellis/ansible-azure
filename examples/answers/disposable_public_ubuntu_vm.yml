@@ -1,15 +1,15 @@
 admin_username: vmadmin
 enable_acc_net: false
 key_vault_name: test-key-vault-0200
-key_vault_rg_name: sandbox-hosts-0040-rg
+key_vault_rg_name: example-hosts-0040-rg
 location: uksouth
 os_disk_size: 48
 os_disk_type: Premium_LRS
-network_security_group_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-net-0040-rg/providers/Microsoft.Network/networkSecurityGroups/vnet-sandbox-0040-nsg-0010
+network_security_group_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/example-net-0040-rg/providers/Microsoft.Network/networkSecurityGroups/vnet-example-0040-nsg-0010
 public_ip_address_type: Dynamic
 public_ip_address_sku: Basic
-storage_account_name: sjestoresandbox0030
-subnet_name: vnet-sandbox-0040-subnet-0010
-vm_resource_group_name: sandbox-hosts-0040-rg
+storage_account_name: sjestoreexample0030
+subnet_name: vnet-example-0040-subnet-0010
+vm_resource_group_name: example-hosts-0040-rg
 vm_size: Standard_B1ms # Use Standard_B1ls for smallest possible instance
-vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/sandbox-net-0040-rg/providers/Microsoft.Network/virtualNetworks/vnet-sandbox-0040
+vnet_id: /subscriptions/5874c492-e72b-4398-9e49-d2b53206acc3/resourceGroups/example-net-0040-rg/providers/Microsoft.Network/virtualNetworks/vnet-example-0040
