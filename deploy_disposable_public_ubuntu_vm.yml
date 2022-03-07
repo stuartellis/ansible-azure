@@ -72,8 +72,8 @@
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
     resource_tags:
-      environment: dev
-      phase: poc
+      environment: example
+      phase: example
     secret_file: "{{ admin_username }}-{{ computer_name }}.pub"
     secret_name: "{{ admin_username }}-{{ computer_name }}-ssh-public-key"
 

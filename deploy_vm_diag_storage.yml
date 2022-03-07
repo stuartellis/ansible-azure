@@ -17,8 +17,8 @@
   vars:
     deployment_name: "{{ store_account_name }}-{{ location }}"
     resource_tags:
-      environment: dev
-      phase: poc
+      environment: example
+      phase: example
 
   roles:
     - role: azure_diag_storage

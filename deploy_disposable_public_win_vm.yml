@@ -75,8 +75,8 @@
     pip_delete_option: Delete
     public_ip_address_name: "{{ vm_name }}-pip0"
     resource_tags:
-      environment: dev
-      phase: poc
+      environment: example
+      phase: example
     secret_file: "{{ computer_name }}-secret-base64.txt"
     secret_name: "{{ computer_name }}-winrm"
     winrm_cert_store_name: "My"

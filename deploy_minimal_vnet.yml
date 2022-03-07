@@ -23,8 +23,8 @@
     subnet_2_name: "{{ vnet_name }}-subnet-0020"
     vnet_address_prefix: "10.0.0.0/16"
     resource_tags:
-      environment: dev
-      phase: poc
+      environment: example
+      phase: example
 
   roles:
     - role: azure_minimal_nsg
