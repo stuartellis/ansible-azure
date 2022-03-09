@@ -1,6 +1,6 @@
 ---
 - name: Set Up Developer Tools on Windows
-  hosts: tag_environment_dev
+  hosts: tag_role_developer
   vars:
     ansible_connection: winrm
     ansible_winrm_server_cert_validation: ignore
